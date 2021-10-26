@@ -1,0 +1,116 @@
+.main-visual{
+    width: 100%;
+    background-color: #000;
+    margin: 0;
+    position: relative;
+}
+.main-visual img{
+    display: block;
+    width: 100%;
+    opacity: 0.4;
+    
+}
+.main-visual .visual-content{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+.visual-content h3{
+    color: white;
+    font-size: 38px;
+}
+.visual-content p{
+    color: orange;
+    font-size: 20px;
+    text-align: center;
+    margin-top: -8%;
+}
+.visual-content a{
+    display: block;
+    width: 50%;
+    margin:  0 auto;
+    background-color: rgb(98, 109, 252);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 0;
+    transition: all 1.2s;
+}
+.visual-content a:hover{
+    background-color: rgb(146, 149, 199);;
+    transform: scale(120%);
+}
+.main-visual .hamburger{
+    position: absolute;
+    left: 5px;
+    top:5px;
+}
+.lb{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    z-index: 99;
+    border: 1px solid #c0c0c0;
+}
+#hm-menu{
+    display: none;
+}
+.lb span, .lb span::before, .lb span::after{
+    width: 32px;
+    height: 3px;
+    content: "";
+    background-color: black;
+    position: absolute;
+    transition: all 0.5s;
+}
+.lb span::before{
+    top: 8px;
+}
+.lb span::after{
+    bottom: 8px;
+}
+#hm-menu:checked ~ .lb span{
+    background-color: rgba(0, 0, 0, 0);
+}
+#hm-menu:checked ~ .lb span::before{
+    top:0;
+    transform: rotate(45deg);
+}
+#hm-menu:checked ~ .lb span::after{
+    top:0;
+    transform: rotate(-45deg);
+}
+ .drower{
+    position: fixed;
+    width: 30%;
+    height: 100%;
+    top: 22%;
+    left: -100%;
+    background-color: rgb(243, 223, 223);
+    transition: all 0.5s;
+
+}
+#hm-menu:checked ~ .drower{
+    left: 0;
+}
+.drower .close{
+    text-align: right;
+    margin-top: 1%;
+}
+.drower .close button{
+    border-radius: 5em;
+    border: 1px solid #a0a0a0;
+    color: #a0a0a0;
+    margin-right: 0.5%;
+    display: none;
+}
+.drower .close button:hover{
+    background: #b0b0b0;
+    
+}
+   

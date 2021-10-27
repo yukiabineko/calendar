@@ -7,16 +7,17 @@ class BasePlan {
     {
        $this->pdo = new PDO(Connect::$dbinfo, Connect::$dbuser, Connect::$dbpass);
        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       $this->pdo->exec('CREATE TABLE IF NOT EXISTS plan(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        dy DATE NOT NULL,
+        user_id INT,
+        memo VARCHAR(22),
+        FOREIGN KEY fk_user_id(user_id) REFERENCES users(id)
+      )');
     }
     public function create(string $param = null, int $user_id){
         try{
-           $this->pdo->exec('CREATE TABLE IF NOT EXISTS plan(
-               id INT PRIMARY KEY AUTO_INCREMENT,
-               dy DATE NOT NULL,
-               user_id INT,
-               memo VARCHAR(22),
-               FOREIGN KEY fk_user_id(user_id) REFERENCES users(id)
-           )');
+           
            $smt = $this->pdo->prepare('INSERT INTO plan( dy, memo, user_id)VALUES(?,?,?)');
            if(isset($param)){
             $date = date('Y-m-d',strtotime($param));

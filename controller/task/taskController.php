@@ -46,7 +46,7 @@ class taskController extends Controller{
     public function change(){
         $task =new task();  
         $task->change_status($_POST);
-        header('location: /plan/index?plan_date='.$_POST['plan_date']);
+        header('location: /calendar/plan/index?plan_date='.$_POST['plan_date']);
         exit();
     }
     //タスク編集ページ
@@ -66,5 +66,11 @@ class taskController extends Controller{
     //タスク編集処理
     public function update(){
         print_r($_POST);
+        $this->task = new task();
+        if($this->task->update($_POST)){
+            header('location: /calendar/plan/index?plan_date='.$_POST['plan_date']);
+            exit();   
+        }
+
     }
 }

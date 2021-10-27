@@ -9,6 +9,12 @@ class BaseUser{
      public function __construct(){
        $this->pdo = new PDO(Connect::$dbinfo, Connect::$dbuser, Connect::$dbpass);
        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       $this->pdo->exec('CREATE TABLE IF NOT EXISTS users(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(20),
+        email VARCHAR(40),
+        password VARCHAR(100)
+       )');
      }
      public function __destruct()
      {
@@ -61,12 +67,7 @@ class BaseUser{
         if($params['csrf-token'] == $_SESSION['csrf_token']){
            $hash_pass = password_hash($params['password'], PASSWORD_DEFAULT);
            try{
-               $this->pdo->exec('CREATE TABLE IF NOT EXISTS users(
-                  id INT PRIMARY KEY AUTO_INCREMENT,
-                  name VARCHAR(20),
-                  email VARCHAR(40),
-                  password VARCHAR(100)
-               )');
+              
                $smt = $this->pdo->prepare('INSERT INTO users(name, email, password)VALUES(?, ?, ?)');
                $smt->bindValue(1, htmlspecialchars($params['name'], ENT_QUOTES, 'UTF-8'),PDO::PARAM_STR);
                $smt->bindValue(2, htmlspecialchars($params['email'], ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);

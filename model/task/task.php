@@ -13,9 +13,9 @@ class task extends taskModel{
     public function dateFormat(){
         return date('Y/m/d',strtotime(($this->working_time)));
       }
-    //時間のフォーマット
+    //時間のフォーマットz
     public function timeFormat(){
-      return date('h時m分',strtotime(($this->working_time)));
+      return date('H時i分',strtotime(($this->working_time)));
     }
 
     //ステータスの状況でラベルの変化

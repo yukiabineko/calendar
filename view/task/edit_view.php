@@ -8,7 +8,7 @@
       <?php endforeach; ?>
     <?php endif; ?>
 
-  <form action="/task/update" method="POST">
+  <form action="/calendar/task/update" method="POST">
       <div class="form-group">
           <p>【作業内容<span style="color:red;font-size:9px;">(*必須です)</span>】</p>
           <input type="text" name="content" value="<?= isset($_SESSION['old']['content'])? $_SESSION['old']['content'] : $task->content  ?>" />

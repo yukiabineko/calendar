@@ -43,6 +43,15 @@ class taskModel{
       $base->change_status($params);
 
     }
+    public function update(array $params): bool{
+      $base = new baseTask();
+      if($base->update($params)){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
     
   
     

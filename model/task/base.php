@@ -7,6 +7,14 @@ class baseTask{
   {
      $this->pdo = new PDO(Connect::$dbinfo, Connect::$dbuser, Connect::$dbpass);
      $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $this->pdo->exec('CREATE TABLE IF NOT EXISTS task(
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      content VARCHAR(200) NOT NULL,
+      working_time DATETIME NOT NULL,
+      status INT DEFAULT 1,
+      plan_id INT NOT NULL,
+      FOREIGN KEY fk_plan_id(plan_id) REFERENCES plan(id)
+    )');
   }
   public function __destruct()
   {
@@ -27,14 +35,7 @@ class baseTask{
       /* csrf対策 okなら登録 */
       if($params['csrf-token'] == $_SESSION['csrf_token']){
         try{
-          $this->pdo->exec('CREATE TABLE IF NOT EXISTS task(
-              id INT PRIMARY KEY AUTO_INCREMENT,
-              content VARCHAR(200) NOT NULL,
-              working_time DATETIME NOT NULL,
-              status INT DEFAULT 1,
-              plan_id INT NOT NULL,
-              FOREIGN KEY fk_plan_id(plan_id) REFERENCES plan(id)
-          )');
+          
           $datetimeArray = [$params['plan_date'], $params['working_time']];
           $working_time = implode(' ',$datetimeArray );     //=>datetime整形
         
@@ -134,7 +135,8 @@ class baseTask{
           
           $smt->bindValue(1, $params['content'], PDO::PARAM_STR);
           $smt->bindValue(2, $working_time, PDO::PARAM_STR);
-          $smt->bindValue(3, (int)$params['plan_id'], PDO::PARAM_INT);
+          $smt->bindValue(3, (int)$params['task_id'], PDO::PARAM_INT);
+          $smt->bindValue(4, (int)$params['plan_id'], PDO::PARAM_INT);
           $smt->execute();
           return true;
       }

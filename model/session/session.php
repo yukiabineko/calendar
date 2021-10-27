@@ -9,6 +9,10 @@ class session{
         $this->pdo = new PDO(Connect::$dbinfo, Connect::$dbuser, Connect::$dbpass);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+    public function __destruct()
+    {
+        $this->pdo = null;
+    }
 
 
     public function auth_validation(){
@@ -58,7 +62,6 @@ class session{
                     header('location: /calendar/session/new');
                     exit();
                }
-               $this->pdo=null;
             }
            
             catch(Exception $e){}

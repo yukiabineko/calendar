@@ -30,10 +30,20 @@
             <h4 style="text-align:center;">【<?= $current_plan->dy.'作業一覧' ?>】</h4>
 
             <!--日付により新規作成ボタンの表示、非表示 -->
+          <div class="task-buttons">
             <?php if( $current_plan->before_today() ): ?>
                 <a href="/calendar/task/new?plan_day=<?php echo isset($_GET['plan_day'])?$_GET['plan_day'] :date('Y-m-d'); ?>" class="new_task_button">新規作業登録</a>
             <?php endif; ?>
-           
+
+            <!--関連日にタスクレコードが1以上存在するなら削除ボタン表示 -->
+            <?php if($current_plan->count() >= 1) : ?>
+                <button id="delete-task-button" onclick="deleteTask()">削除</button>
+                <form action="#" method="POST" id="delete-task-form">
+                <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
+                </form>
+            <?php endif; ?>
+          </div>
+
         </div>
         <?php if(count($tasks)>=1) : ?>
          <!-- スケジュールがその日に存在する時 -->
@@ -43,7 +53,7 @@
                        <th>作業内容</th>
                        <th>開始時間</th>
                        <th>状況</th>
-                       <th colspan="2"></th>
+                       <th colspan="2">削除</th>
                    </tr>
                </thead>
                <tbody>

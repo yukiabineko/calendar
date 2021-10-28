@@ -1,0 +1,30 @@
+@media screen and (max-width: 767px) {
+    .icon-area-phone{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        align-items: center;
+    }
+    .icon-left-phone{
+        display: flex;
+        align-items: center;
+    }
+    .icon-left-phone img{
+        width: 60px;
+    }
+    .icon-left-phone p{
+        font-family:cursive;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .icon-right-phone{
+        margin-top: 2%;
+    }
+    
+    .icon-right-phone img{
+        width: 40px;
+        margin-bottom: -20%;
+        margin-top: 5px;
+    }
+}

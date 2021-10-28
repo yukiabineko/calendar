@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $toptitle ?></title>
     <link rel="stylesheet" href="/calendar/css/share.css">
+    <link rel="stylesheet" href="/calendar/css/share-phone.css">
     <link rel="stylesheet" href="<?php echo $css_file; ?>">
     <script src="<?php echo isset($js_file)? $js_file : '' ?>"></script>
 </head>
 <body>
-    <?php include('./view/share/header.php'); ?>
+    <!-- pcのヘッダー -->
+    <div class="pc-header">
+      <?php include('./view/share/header.php'); ?>
+    </div>
+
+    <!-- phoneのヘッダー -->
+    <div class="phone-header">
+      <?php include('./view/share/header-phone.php'); ?>
+    </div>
+   
     <?php if(isset($_SESSION['flash'])) : ?>
       <div><?= $_SESSION['flash']['success'] ?></div>
     <?php unset($_SESSION['flash']); endif; ?>

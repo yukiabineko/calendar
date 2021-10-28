@@ -76,6 +76,9 @@
     margin-left: 4%;
     border-left: 1px dotted #c0c0c0;
 }
+.task-buttons{
+    display: flex;
+}
 .new_task_button{
     display: block;
     background-color: rgb(129, 162, 235);
@@ -92,6 +95,21 @@
 .new_task_button:hover{
     background-color: rgb(182, 201, 243); 
 }
+
+#delete-task-button{
+    margin-left: 2.5%; 
+    display: block;
+    background-color: red;
+    color: white;
+    width: 12%;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 3em;
+    border: 1px solid rgb(247, 44, 44);
+    font-size: 14px;
+
+ }
 .empty-task{
     width: 90%;
     margin: 0 auto;
@@ -158,5 +176,5 @@
     text-align: center;
     padding: 18px 0;
     margin-top: 12px;
-
 }
+

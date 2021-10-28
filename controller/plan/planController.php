@@ -28,6 +28,12 @@ class planController extends Controller{
          //日付けごとのタスク一覧
          $this->tasks = $this->current_plan->tasks()->tasks;
 
+         //トークン
+         $str = openssl_random_pseudo_bytes(16);
+         $token = bin2hex($str);
+         $_SESSION['csrf_token'] = $token;
+         $this->csrf = $token;
+
     }
     
     public function show(){

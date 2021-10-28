@@ -75,3 +75,7 @@ function toDoubleDigits(num){
     }
      return num;   
 }
+//タスクの削除フォームsubmit
+function deleteTask(){
+    alert('a');
+}

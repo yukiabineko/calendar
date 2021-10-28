@@ -70,5 +70,9 @@ class planModel{
       $this->tasks = $tasks;
       return $this;
    }
+   //リレーションタスクレコード数
+   public function count(): int{
+      return count($this->tasks);
+   }
    
 }

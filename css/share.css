@@ -101,6 +101,9 @@ nav ul li a:hover{
 .sub-menu dd:hover{
     background-color: greenyellow;
 }
+.phone-footer{
+    display: none;
+}
 footer{
     display: block;
     width: 100%;
@@ -181,6 +184,12 @@ main{
         display: none;
     }
     .phone-header{
+        display: block;
+    }
+    .pc-footer{
+        display: none;
+    }
+    .phone-footer{
         display: block;
     }
 }

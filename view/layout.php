@@ -27,7 +27,16 @@
    <main>
      <?php include($yield); ?>
    </main>
-   <?php include('./view/share/footer.php'); ?>
+  
+   <!-- pcのフッター -->
+   <div class="pc-footer">
+      <?php include('./view/share/footer.php'); ?>
+    </div>
+
+    <!-- phoneのフッター -->
+    <div class="phone-footer">
+      <?php include('./view/share/footer-phone.php'); ?>
+    </div>
 
 </body>
 </html>

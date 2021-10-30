@@ -47,14 +47,14 @@ function closeModal(){
     modal.style.display = 'none';
 }
 function setDay(param){
-  let dateTime = new Date(param);
+  let dateTime = new Date(param.replace(/-/g,"/"));
   let year = dateTime.getFullYear();
   let month = dateTime.getMonth() + 1;
   let day = dateTime.getDate();
   return `${year}年${month}月${day}日`;
 }
 function setTime(param){
-    let dateTime = new Date(param);
+    let dateTime = new Date(param.replace(/-/g,"/"));
     let hour = dateTime.getHours();
     let min = dateTime.getMinutes();
     return `${hour}時${min}分`;

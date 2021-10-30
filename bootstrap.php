@@ -51,11 +51,18 @@ class AutoLoader{
           }
        }
     }
+    public function is_mobile(): bool{
+      $user_agent = $_SERVER['HTTP_USER_AGENT']; // HTTP ヘッダからユーザー エージェントの文字列を取り出す
+      return preg_match('/iphone|ipod|ipad|android/ui', $user_agent) != 0; // 既知の判定用文字列を検索
+    }
 
 }
 $load = new AutoLoader();
 $load -> setParams($routes);
 $load -> register();
+
+//アクセス端末のチェック
+$device = $load->is_mobile();
 
 //traitの読み込み
 $trait_pattern = './trait/'.$load->class.'/*.php';

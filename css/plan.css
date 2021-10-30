@@ -158,13 +158,18 @@
     margin: 0 auto;
     padding: 0;
     text-align: left;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
 }
+
 .modal-title{
   width: 100%;
   text-align: center;
   border-bottom: 1px solid #f0f0f0;
   font-weight: 300;
   color:rgb(69, 107, 189);
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
 }
 #datetime-content{
     font-weight: bold;
@@ -172,6 +177,7 @@
 #task-status-change{
     display: block;
     width: 100%;
+    margin: 0 auto;
     background-color: rgb(129, 162, 235);
     border: none;
     color: white;
@@ -179,6 +185,8 @@
     text-align: center;
     padding: 18px 0;
     margin-top: 12px;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
 }
 /*****************************************************************************************************************************************/
 /*
@@ -204,6 +212,11 @@
         height: 50px;
         text-align: right;
     }
+    .cal thead tr th{
+        text-align: center;
+        -webkit-appearance: none;
+        -webkit-text-size-adjust: 100%;
+    }
     .table-area{
         width: 100%;
         margin: 0;
@@ -227,4 +240,40 @@
     #delete-task-button{
         width: 23%;
      }
+     .modal-body{
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        text-align: left;
+        -webkit-appearance: none;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;
+    }
+    .modal-title{
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+      font-weight: 300;
+      color:rgb(69, 107, 189);
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -webkit-text-size-adjust: 100%;
+    }
+    #task-status-change{
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        background-color: rgb(129, 162, 235);
+        border: none;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        padding: 3% 0;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        -webkit-appearance: none;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;
+    }
 }
+

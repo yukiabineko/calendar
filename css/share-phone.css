@@ -41,6 +41,9 @@
         width: calc(1 /2 * 120%);
         background-color: black;
         box-sizing: border-box;
+        -webkit-appearance: none;
+        -webkit-text-size-adjust: 100%;
+        border-left: 1px solid #fff;
     }
     small{
         display: block;

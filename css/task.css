@@ -16,6 +16,8 @@
     height: 30px;
     border: 1px solid rgb(209, 194, 194);
     outline: none;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
 }
 .form-group input[type='submit']{
     width: 100%;
@@ -24,6 +26,8 @@
     color: white;
     border: none;
     margin-top: 35px;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
 }
 .form-group input[type='submit']:hover{
     background-color: rgb(180, 180, 230);

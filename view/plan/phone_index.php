@@ -96,5 +96,7 @@
           <div class="empty-task">現在この日付けに予定はありません。</div>
         <?php endif; ?>
 
+        
+
     
 </div>

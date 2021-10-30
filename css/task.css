@@ -29,3 +29,10 @@
     background-color: rgb(180, 180, 230);
     color: rgb(120, 120, 199);
 }
+@media screen and (max-width: 767px) {
+    .new-task-area{
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    } 
+}

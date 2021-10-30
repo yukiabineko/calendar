@@ -29,3 +29,9 @@
     background-color: rgb(180, 180, 230);
     color: rgb(120, 120, 199);
 }
+@media screen and (max-width: 767px) {
+    .new-user-area{
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

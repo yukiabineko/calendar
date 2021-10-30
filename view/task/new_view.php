@@ -1,5 +1,5 @@
 <h2 style="text-align:center;">【新規作業登録】</h2>
-<h3 style="text-align:center;">【<?= $plan->dy ?>】</h3>
+<h4 style="text-align:center;">【<?= $plan->dy ?>】</h4>
 <div class="new-task-area">
     <!--エラーメッセージあるか? -->
     <?php if(isset($_SESSION['errors'])) : ?>

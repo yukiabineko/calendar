@@ -275,5 +275,27 @@
         -webkit-text-size-adjust: 100%;
         box-sizing: border-box;
     }
+    /*タスク編集*/
+    .edit-task-a{
+        background-color: rgb(129, 162, 235);
+        text-decoration: none;
+        display: block;
+        color: #fff;
+        border: 1px solid #fff; 
+        font-size: 12px;
+        width: 45%;
+        text-align: center;
+        
+    }
+    /*チェックボックス*/
+    .delete-task-checks{
+        display: block;
+        width: 30px;
+        height: 30px;
+        color: #444;
+        margin: 0 auto;
+        
+        
+    }
 }
 

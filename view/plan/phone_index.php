@@ -44,46 +44,50 @@
 
     <?php if(count($tasks)>=1) : ?>
          <!-- スケジュールがその日に存在する時 -->
-         <form action="#" method="POST" id="delete-task-form">
+         <form action="/calendar/task/delete" method="POST" id="delete-task-form">
            <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
            <table class="task-table">
                <thead>
                    <tr>
-                       <th>作業内容</th>
+                       <th>&nbsp;作業内容</th>
                        <th>開始時間</th>
-                       <th>状況</th>
-                       <th colspan="2">削除</th>
+                       <th>削除</th>
+                      
                    </tr>
                </thead>
                <tbody>
                    <?php foreach($tasks as $task): ?>
                     <tr>
-                        <td><?= $task->content ?></td>
-                        <td><?= $task->timeFormat() ?></td>
-                        <td>
+                        <td style="width: 60%;border:1px solid #c0c0c0;font-weight:bold;">
+                          &nbsp;<?= $task->content ?>
+                          <div style="display:flex;justify-content:center; align-items: center;border-top:1px dotted #c0c0c0;box-sizing:border-box;">
                             <?php if($task->getStatausLabel() == '未着手' || $task->getStatausLabel() == '完了済' ) : ?>
-                              <button 
-                                 style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:5px;border:none;"
-                                 onMouseOver="this.style.background='#D2B48C'"
-                                 onMouseOut="this.style.background='<?=  $task->getStatausStyle() ?>'"
-                                 onClick="openModal(<?php echo  $task->id ?>)"
-                              >
-                               <?= $task->getStatausLabel() ?>
-                            </button>
+                                <button 
+                                  type="button"
+                                  style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:11px;border:none;width:45%;"
+                                  onMouseOver="this.style.background='#D2B48C'"
+                                  onMouseOut="this.style.background='<?=  $task->getStatausStyle() ?>'"
+                                  onClick="openModal(<?php echo  $task->id ?>)"
+                                >
+                                <?= $task->getStatausLabel() ?>
+                              </button>
 
-                            <?php else : ?>
-                              <span style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:5px;"><?= $task->getStatausLabel() ?></span>
-                            <?php endif; ?>
+                              <?php else : ?>
+                                <span style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:5px;"><?= $task->getStatausLabel() ?></span>
+                              <?php endif; ?>
+
+                              <!--日付により編集ボタンの表示、非表示 -->
+                              <?php if( $current_plan->before_today() ): ?>
+                                <a href="/calendar/task/edit?id=<?= $task->id ?>" class="edit-task-a">編集</a>
+                              <?php endif; ?>
+
+                          </div>
                         </td>
-                        <td>
-                            <!--日付により編集ボタンの表示、非表示 -->
-                                <?php if( $current_plan->before_today() ): ?>
-                                    <a href="/calendar/task/edit?id=<?= $task->id ?>">編集</a>
-                                <?php endif; ?>
-                            
-                        </td>
-                        <td>
-                            <input type="checkbox">
+                        <td style="border:1px solid #c0c0c0;"><?= $task->timeFormat() ?></td>
+                        
+                        <td style="border:1px solid #c0c0c0;width:12%;text-align:center;">
+                           <!--削除チェック -->
+                           <input type="checkbox" name="tasks[]" value="<?= $task->id ?>" class="delete-task-checks"  />
                         </td>
                     </tr>
                    <?php endforeach; ?>

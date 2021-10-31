@@ -15,5 +15,6 @@ $routes = [
     ['url'=>'/calendar/task/change', 'class'=>'task', 'action'=>'change'],
     ['url'=>'/calendar/task/edit', 'class'=>'task', 'action'=>'edit'],
     ['url'=>'/calendar/task/update', 'class'=>'task', 'action'=>'update'],
+    ['url'=>'/calendar/task/delete', 'class'=>'task', 'action'=>'delete'],
 
 ];

@@ -77,5 +77,8 @@ function toDoubleDigits(num){
 }
 //タスクの削除フォームsubmit
 function deleteTask(){
-    alert('a');
+   let result = confirm('削除してもよろしいですか？');
+   if(result){
+       document.getElementById('delete-task-form').submit();
+   }
 }

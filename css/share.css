@@ -217,12 +217,13 @@ main{
         -webkit-appearance: none;
         -webkit-text-size-adjust: 100%;
     }
-}
-@media (orientation: landscape){
-    #modal-content{
-        height: 60%;
+    @media (orientation: landscape){
+        #modal-content{
+            height: 60%;
+        }
+        .modal-colse{
+            margin-left: 90%; 
+        }
     }
-    .modal-colse{
-        margin-left: 90%; 
-    }
 }
+

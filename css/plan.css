@@ -1,6 +1,4 @@
-.plan-phone{
-    display: none;
-}
+
 .content{
     width: 100%;
     display: flex;
@@ -137,18 +135,25 @@
     height: 30px;
     line-height: 2.3em;
     font-size: 14px;
+    text-align: left;
+    border: 1px solid #fff;
+}
+.task-table thead tr th{
+    border: 1px solid #fff;
+    height: 60px;
 }
 .task-table tbody{
     border-bottom: 1px dotted #c0c0c0;
-    height: 32px;
+    height: 60px;
     line-height: 2.5em;
-    text-align: center;
+    text-align: left;
     font-family: monospace;
 }
 .task-table tbody td{
-    height: 35px;
+    height: 50px;
     line-height: 2.7em;
     font-size: 15px;
+    font-weight: 200;
 }
 .task-change-button:hover{
     background-color: orange;
@@ -193,12 +198,7 @@
 スマートフォン
 */
 @media screen and (max-width:767px) {
-    .plan-phone{
-        display: block;
-    }
-    .plan-pc{
-        display: none;
-    }
+
     .content{
         display: block;
     }

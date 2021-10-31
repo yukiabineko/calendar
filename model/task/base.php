@@ -150,6 +150,24 @@ class baseTask{
       exit();
     }
   }
+  //タスクの削除
+  public function delete(int  $id): bool{
+    try{
+      /* csrf対策 okなら登録 */
+      if($_POST['csrf-token'] == $_SESSION['csrf_token']){
+        $smt = $this->pdo->prepare('DELETE FROM task WHERE id=?');
+        $smt->bindValue(1, (int)$id, PDO::PARAM_INT);
+        $smt->execute();
+        return true;
+      }
+      return false;
+    }
+    catch(Exception $e){
+      $e->getMessage();
+      die();
+      return false;
+    }
+  }
   
   //バリデーション
   public function validation(){

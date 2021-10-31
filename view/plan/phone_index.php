@@ -38,15 +38,14 @@
             <!--関連日にタスクレコードが1以上存在するなら削除ボタン表示 -->
             <?php if($current_plan->count() >= 1) : ?>
                 <button id="delete-task-button" onclick="deleteTask()">削除</button>
-                <form action="#" method="POST" id="delete-task-form">
-                <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
-                </form>
             <?php endif; ?>
         </div>
     </div>
 
     <?php if(count($tasks)>=1) : ?>
          <!-- スケジュールがその日に存在する時 -->
+         <form action="#" method="POST" id="delete-task-form">
+           <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
            <table class="task-table">
                <thead>
                    <tr>
@@ -89,8 +88,8 @@
                     </tr>
                    <?php endforeach; ?>
                </tbody>
-           </table>
-         
+             </table>
+           </form>
         <?php else: ?>
           <!-- スケジュールがその日に存在しない時 -->
           <div class="empty-task">現在この日付けに予定はありません。</div>

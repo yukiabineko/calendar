@@ -38,32 +38,33 @@
             <!--関連日にタスクレコードが1以上存在するなら削除ボタン表示 -->
             <?php if($current_plan->count() >= 1) : ?>
                 <button id="delete-task-button" onclick="deleteTask()">削除</button>
-                <form action="#" method="POST" id="delete-task-form">
-                <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
-                </form>
             <?php endif; ?>
         </div>
     </div>
 
         <?php if(count($tasks)>=1) : ?>
          <!-- スケジュールがその日に存在する時 -->
-           <table class="task-table">
+           <form action="/calendar/task/delete" method="POST" id="delete-task-form">
+            <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />  
+            <input type="hidden" name="plan_date" value="<?= $current_plan->dy?>" />  
+            <table class="task-table">
                <thead>
                    <tr>
-                       <th>作業内容</th>
-                       <th>開始時間</th>
-                       <th>状況</th>
-                       <th colspan="2">削除</th>
+                       <th>&nbsp;作業内容</th>
+                       <th style="text-align: center;">開始時間</th>
+                       <th style="text-align: center;">状況</th>
+                       <th colspan="2" style="text-align: center;">編集/削除</th>
                    </tr>
                </thead>
                <tbody>
                    <?php foreach($tasks as $task): ?>
                     <tr>
-                        <td><?= $task->content ?></td>
-                        <td><?= $task->timeFormat() ?></td>
-                        <td>
+                        <td style="border:1px solid #c0c0c0;width:55%;">&nbsp;<?= $task->content ?></td>
+                        <td style="text-align: center;border:1px solid #c0c0c0;"><?= $task->timeFormat() ?></td>
+                        <td style="text-align: center;border:1px solid #c0c0c0;">
                             <?php if($task->getStatausLabel() == '未着手' || $task->getStatausLabel() == '完了済' ) : ?>
                               <button 
+                                 type="button"
                                  style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:5px;border:none;"
                                  onMouseOver="this.style.background='#D2B48C'"
                                  onMouseOut="this.style.background='<?=  $task->getStatausStyle() ?>'"
@@ -76,21 +77,21 @@
                               <span style="background:<?php echo $task->getStatausStyle(); ?>;color:#F5FFFA;padding:5px;"><?= $task->getStatausLabel() ?></span>
                             <?php endif; ?>
                         </td>
-                        <td>
+                        <td style="text-align: center;border-bottom:1px solid #c0c0c0;">
                             <!--日付により編集ボタンの表示、非表示 -->
                                 <?php if( $current_plan->before_today() ): ?>
                                     <a href="/calendar/task/edit?id=<?= $task->id ?>">編集</a>
                                 <?php endif; ?>
                             
                         </td>
-                        <td>
-                            <input type="checkbox">
+                        <td style="text-align: center;border-bottom:1px solid #c0c0c0;">
+                            <input type="checkbox" name="tasks[]" value="<?= $task->id ?>" />
                         </td>
                     </tr>
                    <?php endforeach; ?>
                </tbody>
            </table>
-         
+          </form>
         <?php else: ?>
           <!-- スケジュールがその日に存在しない時 -->
           <div class="empty-task">現在この日付けに予定はありません。</div>

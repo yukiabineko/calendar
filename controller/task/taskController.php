@@ -71,6 +71,14 @@ class taskController extends Controller{
             header('location: /calendar/plan/index?plan_date='.$_POST['plan_date']);
             exit();   
         }
-
+    }
+    //タスクの削除処理
+    public function delete(){
+       foreach($_POST['tasks'] as $id){
+           $task = new task();
+           $task->delete((int)$id);
+       }
+       header('location: /calendar/plan/index?plan_date='.$_POST['plan_date']);
+       exit();
     }
 }

@@ -52,6 +52,17 @@ class taskModel{
         return false;
       }
     }
+    //削除
+    public function delete(int $id): bool{
+      
+      $base = new baseTask();
+      if($base->delete($id)){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
     
   
     

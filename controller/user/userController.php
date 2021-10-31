@@ -17,6 +17,9 @@ class userController extends Controller{
             header('location: /calendar/top/index');
             exit();
         }
+    }
+
+    public function edit(){
         
     }
 }

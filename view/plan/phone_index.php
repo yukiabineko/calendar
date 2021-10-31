@@ -7,9 +7,13 @@
 
     <!-- 月の切り替え -->
     <div class="month-link">
-        <a href="/calendar/plan/index?date=<?php echo date('Y-m',strtotime('-1 month'.$firstPlan)); ?>">前月</a>
+      <a 
+        href="/calendar/plan/index?date=<?php echo date('Y-m',strtotime('-1 month'.$firstPlan)); ?>&plan_day=<?php echo date('Y-m',strtotime('-1 month'.$firstPlan)); ?>-01"
+        >前月</a>
         <p><?= Plan::getDateFormat($firstPlan); ?></p>
-        <a href="#">次月</a>
+      <a 
+        href="/calendar/plan/index?date=<?php echo date('Y-m',strtotime('+1 month'.$firstPlan)); ?>&plan_day=<?php echo date('Y-m',strtotime('-1 month'.$firstPlan)); ?>-01"
+        >次月</a>
     </div>
 
      <!--カレンダー　-->

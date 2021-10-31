@@ -38,8 +38,10 @@
               <?php else : ?>
                 <a href="#">設定</a>
                 <dl class="sub-menu">
-                    <dd>会員情報編集</dd>
-                    <dd><a href="/calendar/session/destroy" style="background:none;border:none;padding:0;">ログアウト</a></dd>
+                  <dd>
+                    <a href="/calendar/user/edit" style="background:none;border:none;padding:0;">会員情報編集</a>
+                  </dd>
+                  <dd><a href="/calendar/session/destroy" style="background:none;border:none;padding:0;">ログアウト</a></dd>
                 </dl>
               <?php endif; ?>
               

@@ -36,7 +36,7 @@
                 <a href="#">設定</a>
                 <dl class="sub-menu">
                     <dd>
-                      <a href="/calendar/user/edit" style="background:none;border:none;padding:0;">会員情報編集</a>
+                      <a href="/calendar/user/edit?id=<?= $current_user['id'] ?>" style="background:none;border:none;padding:0;">会員情報編集</a>
                     </dd>
                     <dd><a href="/calendar/session/destroy" style="background:none;border:none;padding:0;">ログアウト</a></dd>
                 </dl>

@@ -1,4 +1,5 @@
 <h2 style="text-align:center;">【会員情報編集】</h2>
+<h5 style="text-align:center;">【<?= $user->name ?>】</h5>
 
 <div class="new-user-area">
     <!--エラーメッセージあるか? -->
@@ -8,15 +9,15 @@
       <?php endforeach; ?>
     <?php endif; ?>
 
-  <form action="/calendar/user/create" method="POST">
+  <form action="/calendar/user/update?id=<?= $user->id ?>" method="POST">
       <div class="form-group">
           <p>【会員名<span style="color:red;font-size:9px;">(*必須です)</span>】</p>
-          <input type="text" name="name" value="<?= isset($_SESSION['old']['name'])? $_SESSION['old']['name'] : ''  ?>" />
+          <input type="text" name="name" value="<?= isset($_SESSION['old']['name'])? $_SESSION['old']['name'] : $user->name  ?>" />
       </div>
 
       <div class="form-group">
           <p>【メールアドレス<span style="color:red;font-size:9px;">(*必須です)</span>】</p>
-          <input type="email" name="email"  value="<?= isset($_SESSION['old']['email'])? $_SESSION['old']['email'] : ''  ?>" />
+          <input type="email" name="email"  value="<?= isset($_SESSION['old']['email'])? $_SESSION['old']['email'] : $user->email  ?>" />
       </div>
 
       <div class="form-group">
@@ -32,7 +33,7 @@
       <input type="hidden" name="csrf-token" value="<?= $csrf ?>" />
 
       <div class="form-group">
-          <input type="submit" value="登録" />
+          <input type="submit" value="編集" />
       </div>
   </form>
 </div>

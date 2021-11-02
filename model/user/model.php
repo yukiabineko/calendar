@@ -41,5 +41,14 @@ class userModel{
            }
         }
     }
-    //
+    //レコードアップロード
+    public function update(array $params, int $id): bool{
+        $base = new BaseUser();
+        if($base->update($params,$id)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

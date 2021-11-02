@@ -7,6 +7,7 @@ $routes = [
     ['url'=>'/calendar/user/new', 'class'=>'user', 'action'=>'new'],
     ['url'=>'/calendar/user/edit', 'class'=>'user', 'action'=>'edit'],
     ['url'=>'/calendar/user/create', 'class'=>'user', 'action'=>'create'],
+    ['url'=>'/calendar/user/update', 'class'=>'user', 'action'=>'update'],
     ['url'=>'/calendar/session/new', 'class'=>'session', 'action'=>'new'],
     ['url'=>'/calendar/session/create', 'class'=>'session', 'action'=>'create'],
     ['url'=>'/calendar/session/destroy', 'class'=>'session', 'action'=>'destroy'],

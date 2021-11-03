@@ -69,4 +69,15 @@ trait planHelper
        $html .='</tr>';
        return $html;
     }
+    //履歴年度設定
+   public function target_year(string $year = null): string{
+      if(isset($year)){
+          return date('Y年度履歴',strtotime($year));
+      }
+      else{
+          return date('Y年度履歴');
+      }
+   }
+    
+   
 }

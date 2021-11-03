@@ -41,4 +41,15 @@ class planController extends Controller{
         $plan = $record->find($_GET['id']);
         echo json_encode($plan);
     }
+
+    public function history(){
+         //該当年度セット
+        $this->target_year = $this->target_year( isset($_GET['year'])? $_GET['year'] : null); 
+        $this->toptitle = "スケジュール";
+
+        //前年数
+        $this->before_count = Plan::before_count(isset($_GET['year'])? $_GET['year'] : date('Y'));
+        print_r($this->before_count);
+        
+    }
 }

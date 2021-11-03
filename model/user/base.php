@@ -40,6 +40,15 @@ class BaseUser{
         (mb_strlen($_POST['password']) < 6 && !empty($_POST['password']) ) ?array_push($errors, 'パスワードは６文字以上です。') : ''; 
          $_SESSION['errors'] = $errors;
     }
+    //
+    public function edit_validation(){
+      if(isset( $_SESSION['errors'])){
+          $errors = $_SESSION['errors'];
+          $index = array_search('そのメールアドレスはすでに存在します。', $errors);
+          $new_errors = array_splice($errors,$index);
+          $_SESSION['errors'] = $new_errors;
+      }
+    }
     /*
     /*
     /*
@@ -75,6 +84,11 @@ class BaseUser{
                $smt->execute();
                $_SESSION['flash'] = array('success'=>'登録しました。');
 
+                //先ほど登録したレコード取り出し
+               $smt = $this->pdo->query('SELECT * FROM users ORDER BY id DESC LIMIT 1');
+               $result = $smt->fetch(PDO::FETCH_ASSOC);
+               $_SESSION['current_user'] = $result;
+
                return true;
            }
            catch(Exception $e){
@@ -106,6 +120,7 @@ class BaseUser{
         バリデーション対策
         */
         $this->validation();
+        $this->edit_validation();
         if(!empty($_SESSION['errors'])){
             $_SESSION['old']= $post_params;
             $_SESSION['render'] = true;
@@ -128,6 +143,11 @@ class BaseUser{
                 $smt->bindValue(4, $user_id, PDO::PARAM_INT);
                 $smt->execute();
                 $_SESSION['flash'] = array('success'=>'編集しました。');
+
+                //先ほど登録したレコード取り出し
+                $smt = $this->pdo->query('SELECT * FROM users ORDER BY id DESC LIMIT 1');
+                $result = $smt->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['current_user'] = $result;
  
                 return true;
             }

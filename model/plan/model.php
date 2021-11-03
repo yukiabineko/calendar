@@ -74,5 +74,14 @@ class planModel{
    public function count(): int{
       return count($this->tasks);
    }
+   /******************************************************************************* */
+   /*
+   static function
+   */
+  //前年度のレコード数
+  public static function before_count(string $before_year): int{
+   $base = new BasePlan();
+   return $base->before_record_count($before_year);
+  }
    
 }

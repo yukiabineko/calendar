@@ -122,4 +122,22 @@ class BasePlan {
     $this->pdo = null;
     return $result;
   }
+  //前年レコードあるか確認
+  public function before_record_count(string $before_year): int{
+    $before = $before_year."-01-01";
+    
+    try{
+        $smt = $this->pdo->prepare('SELECT count(*) from plan WHERE dy < ?');
+        $smt->bindValue(1, $before, PDO::PARAM_STR);
+        $smt->execute();
+        $record = $smt->fetch(PDO::FETCH_ASSOC);
+        $count =  $record['count(*)'];
+        return $count;
+        
+     }
+     catch(Exception $e){
+         $e->getMessage();
+         die();
+     }
+  }
 }

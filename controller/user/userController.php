@@ -20,6 +20,13 @@ class userController extends Controller{
     }
 
     public function edit(){
+
+        //他のユーザーがurl操作でアクセスするのを防止
+        if($_GET['id'] != $_SESSION['current_user']['id']){
+            $_SESSION['flash'] = array('success'=>'操作が不正です。');
+            header('location: /calendar/top/index');
+            exit();
+        }
         $this->user = new user();
         $this->user->find($_GET['id']);
         $this->toptitle = "会員編集";

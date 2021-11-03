@@ -13,5 +13,6 @@ class Plan extends planModel{
     $today = date('Y-m-d');
     return strtotime($today) <= strtotime($this->dy) ?true : false;
    }
+
    
 }

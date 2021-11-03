@@ -193,6 +193,54 @@
     -webkit-appearance: none;
     -webkit-text-size-adjust: 100%;
 }
+/*
+履歴
+*/
+.histroy-year-content{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 1%; 
+}
+.history-table{
+    width: 60%;
+    border-right: 1px dotted #f0f0f0;
+    margin-top: 1%;
+    margin-left: 4%;
+    border-left: 1px dotted #c0c0c0;  
+}
+.year-buttons{
+    display: flex;
+    text-align: center;
+}
+.year-buttons *{
+    display: block;
+    margin: 12px 2%;
+    background-color: rgb(129, 162, 235);
+    color: white;
+    width: 12%;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 3em;
+    font-size: 14px;
+}
+.year-buttons *:hover{
+    background-color: rgb(182, 201, 243); 
+}
+.month-list{
+    width: 88%;
+    margin: 0 auto;
+    border: 1px solid #c0c0c0;
+    background-color: #fff;
+
+}
+.month-list dd{
+    height: 60px;
+    border: 1px solid #f0f0f0;
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+}
 /*****************************************************************************************************************************************/
 /*
 スマートフォン

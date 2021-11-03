@@ -48,8 +48,16 @@ class planController extends Controller{
         $this->toptitle = "スケジュール";
 
         //前年数
-        $this->before_count = Plan::before_count(isset($_GET['year'])? $_GET['year'] : date('Y'));
-        print_r($this->before_count);
+        $this->before_count = Plan::before_count(isset($_GET['year'])? $_GET['year'] : date('Y'), (int)$_GET['user_id']);
+
+        //来年度
+        $this->after_count = Plan::after_count(isset($_GET['year'])? $_GET['year'] : date('Y'), (int)$_GET['user_id']);
+       
+
+        //左エリアの月リスト
+        $this->months = $this->each_year_month(isset($_GET['year'])? $_GET['year'] : null);
+        
+
         
     }
 }

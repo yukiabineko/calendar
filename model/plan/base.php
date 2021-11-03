@@ -123,12 +123,32 @@ class BasePlan {
     return $result;
   }
   //前年レコードあるか確認
-  public function before_record_count(string $before_year): int{
+  public function before_record_count(string $before_year, int $user_id): int{
     $before = $before_year."-01-01";
     
     try{
-        $smt = $this->pdo->prepare('SELECT count(*) from plan WHERE dy < ?');
+        $smt = $this->pdo->prepare('SELECT count(*) from plan WHERE dy < ? AND user_id=?');
         $smt->bindValue(1, $before, PDO::PARAM_STR);
+        $smt->bindValue(2, $user_id, PDO::PARAM_INT);
+        $smt->execute();
+        $record = $smt->fetch(PDO::FETCH_ASSOC);
+        $count =  $record['count(*)'];
+        return $count;
+        
+     }
+     catch(Exception $e){
+         $e->getMessage();
+         die();
+     }
+  }
+  //次年レコードあるか確認
+  public function after_record_count(string $after_year, int $user_id): int{
+    $after = $after_year."-12-31";
+    
+    try{
+        $smt = $this->pdo->prepare('SELECT count(*) from plan WHERE dy > ? AND user_id=?');
+        $smt->bindValue(1, $after, PDO::PARAM_STR);
+        $smt->bindValue(2, $user_id, PDO::PARAM_INT);
         $smt->execute();
         $record = $smt->fetch(PDO::FETCH_ASSOC);
         $count =  $record['count(*)'];

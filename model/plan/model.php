@@ -79,9 +79,14 @@ class planModel{
    static function
    */
   //前年度のレコード数
-  public static function before_count(string $before_year): int{
+  public static function before_count(string $before_year, int $user_id): int{
    $base = new BasePlan();
-   return $base->before_record_count($before_year);
+   return $base->before_record_count($before_year, $user_id);
+  }
+  //次年度のレコード数
+  public static function after_count(string $after_year, int $user_id): int{
+   $base = new BasePlan();
+   return $base->after_record_count($after_year, $user_id);
   }
    
 }

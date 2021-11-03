@@ -78,6 +78,24 @@ trait planHelper
           return date('Y年度履歴');
       }
    }
-    
+   //各年度の月の振り分け(今年度の場合は今月まで)
+   public function each_year_month(string $target_year = null): array {
+       $target = date('Y-m-d',strtotime($target_year.'-01-01'));
+       
+       if(isset($target_year)){
+         $months = array();
+         foreach(range(1, 12) as $month){
+             array_push($months, $month);
+         }
+       }
+       else if(is_null($target_year) || date('Y') == date('Y',strtotime($target))){
+          $this_month = date('m');
+          $months = array();
+          foreach(range(1, $this_month) as $month){
+            array_push($months, $month);
+          }
+       }
+       return $months;
+   }
    
 }

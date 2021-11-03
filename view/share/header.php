@@ -23,7 +23,8 @@
               </a>
            </li>
            <li>
-              <a href="/calendar/plan/history" style="<?php echo is_null($current_user)? 'pointer-events:none;background:#4d4c4c;color:gray;border:1px dotted white;' : ''   ?>">
+              <a href="/calendar/plan/history?user_id=<?= $current_user['id'] ?>" 
+                style="<?php echo is_null($current_user)? 'pointer-events:none;background:#4d4c4c;color:gray;border:1px dotted white;' : ''   ?>">
                   履歴
               </a>
            </li>

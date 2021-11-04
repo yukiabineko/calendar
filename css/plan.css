@@ -209,12 +209,16 @@
     border-left: 1px dotted #c0c0c0;  
 }
 .year-buttons{
+    width: 88%;
+    margin: 0 auto;
     display: flex;
     text-align: center;
 }
 .year-buttons *{
     display: block;
-    margin: 12px 2%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    margin-top: 4%;
     background-color: rgb(129, 162, 235);
     color: white;
     width: 12%;
@@ -230,16 +234,29 @@
 .month-list{
     width: 88%;
     margin: 0 auto;
-    border: 1px solid #c0c0c0;
-    background-color: #fff;
+    background-color: #444;
+    border: 1px solid #f0f0f0;
 
 }
+.month-list dt{
+    width: 100%;
+    background-color: #f0f0f9;
+    color: #444;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+   
+}
 .month-list dd{
-    height: 60px;
+    width: 100%;
     border: 1px solid #f0f0f0;
     background-color: #fff;
     text-align: center;
-    vertical-align: middle;
+    font-size: 14px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+   
 }
 /*****************************************************************************************************************************************/
 /*
@@ -342,8 +359,26 @@
         height: 30px;
         color: #444;
         margin: 0 auto;
-        
-        
+    }
+    /*
+    履歴
+    */
+    .histroy-year-content{
+        width: 100%;
+        margin-top: 1%; 
+    }
+    .year-buttons{
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 10%;
+        margin-bottom: 4%;
+        justify-content: space-between;
+    }
+    .year-buttons *{
+        width: 44%;
+        line-height: 30px;
+        font-size: 14px;
+        border-radius: 0;
     }
 }
 

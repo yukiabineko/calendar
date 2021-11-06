@@ -37,6 +37,15 @@
         <div class="task-info">
           <h4>【<?= Plan::getDateFormat($_GET['date']).'作業履歴' ?>】</h4>
         </div>
+        <table>
+          <thead>
+            <tr>
+              <th>日付け</th>
+              <th>内容</th>
+              <th>状況</th>
+            </tr>
+          </thead>
+        </table>
     </div>
 
 </div>

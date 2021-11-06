@@ -44,6 +44,12 @@ class planController extends Controller{
     }
 
     public function history(){
+        $files = get_included_files();
+        $include_file = './model/task/task.php';
+
+        //タスクモデルファイル読み込んでなければ読み込み
+        !in_array($include_file, $files)? require $include_file : '';
+
 
         $user = new user();
         $this->user = $user->find((int)$_GET['user_id']);
@@ -61,8 +67,11 @@ class planController extends Controller{
 
         //左エリアの月リスト
         $this->months = $this->each_year_month(isset($_GET['year'])? $_GET['year'] : null);
-        
 
+        //右エリアにて各月のタスクリスト
+         $task =new task();
+         $this->tasks = $task->one_month_task($this->target_year."01-01");
+         print_r($this->tasks);
         
     }
 }

@@ -52,9 +52,10 @@ class taskModel{
         return false;
       }
     }
+
     //削除
     public function delete(int $id): bool{
-      
+     
       $base = new baseTask();
       if($base->delete($id)){
         return true;
@@ -63,7 +64,28 @@ class taskModel{
         return false;
       }
     }
-    
+
+    //一ヶ月分のタスクを検索
+    public function one_month_task(string $send_date): array{
+       $tasks = array();
+
+       if(isset($_SESSION['current_user'])){
+         $base = new baseTask();
+         $records = $base->target_tasks((int)$_SESSION['current_user']['id'], $send_date);
+         
+         foreach($records as $record){
+           $new_task = new task();
+           $new_task->id = $record['id'];
+           $new_task->content = $record['content'];
+           $new_task->working_time = $record['working_time'];
+           $new_task->status = $record['status'];
+           $new_task->plan_id = $record['plan_id'];
+           array_push($tasks, $new_task);
+         }
+
+       }
+       return $tasks;
+    }
   
     
 }

@@ -17,6 +17,17 @@ class task extends taskModel{
     public function timeFormat(){
       return date('H時i分',strtotime(($this->working_time)));
     }
+    //月日のフォーマット
+    public function month_and_day(){
+      return date('m/d',strtotime(($this->working_time)));
+    }
+    //曜日のセット
+    public function setWeek(){
+      $weeks = ["月","火","水","木","金","土","日"];
+      $num = date('w', strtotime($this->working_time));
+      return $weeks[$num];
+    }
+
 
     //ステータスの状況でラベルの変化
 

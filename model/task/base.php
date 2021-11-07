@@ -170,7 +170,7 @@ class baseTask{
   }
   //ユーザー、日付、タスク連結レコード
    public function target_tasks(int $user_id, string $send_date){
-       $date =date('Y-m-d',strtotime($send_date));
+       $date =date('Y-m',strtotime($send_date));
        $first_day = date('Y-m-d',strtotime('first day of'.$date));
        $last_day = date('Y-m-d',strtotime('last day of'.$date));
 

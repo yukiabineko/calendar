@@ -22,20 +22,12 @@
           <?php foreach($months as $month) : ?>
             <dd>
               <a 
-                href="/calendar/plan/history?user_id=<?= $user->id ?>&date=<?= date('Y-m',strtotime($target_year.'-'.$month)) ?>"
+                href="/calendar/plan/tasks?user_id=<?= $user->id ?>&date=<?= date('Y-m',strtotime($target_year.'-'.$month)) ?>"
                 ><?= $month.'月度履歴' ?></a>
             </dd>
           <?php endforeach; ?>
         </dl>
-
     </div>
 
-        
-    <!-- 右エリア-->
-    <div class="history-table">
-        <div class="task-info">
-          
-        </div>
-    </div>
 
 </div>

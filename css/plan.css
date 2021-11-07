@@ -208,6 +208,27 @@
     margin-left: 4%;
     border-left: 1px dotted #c0c0c0;  
 }
+.history-table table{
+    width: 95%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+.history-table table thead th{
+   background-color: rgb(129, 162, 235);
+   border: 1px solid #fff;
+   color: white;
+   font-size: 14px;
+   line-height: 42px;
+}
+.history-table table tbody td{
+    font-size: 12px;
+    line-height: 52px;
+    border: 1px  solid #c0c0c0;
+    text-align: center;
+    vertical-align: middle;
+ }
+
 .year-buttons{
     width: 88%;
     margin: 0 auto;
@@ -379,6 +400,41 @@
         line-height: 30px;
         font-size: 14px;
         border-radius: 0;
+    }
+    /*
+    履歴
+    */  
+    .history-table{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }  
+    .history-table table{
+        width: 95%;
+        margin: 0 auto;
+        background-color: #fff;
+        border-collapse: collapse;
+        box-sizing: border-box;
+    }
+    .history-back{
+        position: fixed;
+        top:50%;
+        left:1%;
+    }
+    .history-back a{
+        display: block;
+        margin: 0;
+        padding: 20px;
+        text-decoration: none;
+        border-radius: 50%;
+        background-color: rgb(70, 70, 236);
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+    }
+    .history-back a:hover{
+        background-color: rgb(150, 150, 185);
     }
 }
 

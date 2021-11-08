@@ -31,6 +31,6 @@
   </div>
 
   <div class="history-back">
-      <a href="#">戻る</a>
+      <a href="/calendar/plan/history?user_id=<?= $_GET['user_id'] ?>&date=<?= $_GET['date'] ?>">戻る</a>
   </div>
 </div>

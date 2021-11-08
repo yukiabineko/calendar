@@ -88,7 +88,7 @@ trait planHelper
              array_push($months, $month);
          }
        }
-       else if(is_null($target_year) || date('Y') == date('Y',strtotime($target))){
+       else if(is_null($target_year)){
           $this_month = date('m');
           $months = array();
           foreach(range(1, $this_month) as $month){

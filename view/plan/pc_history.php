@@ -8,12 +8,14 @@
         <div class="year-buttons"> 
         <!--前年存在するか -->
           <?php if($before_count >0): ?>
-            <a href="#">前年</a>
+            <a href="/calendar/plan/history?user_id=<?= $user->id ?>&year=<?= $prev_year ?>&date=<?= date('Y-m',strtotime($prev_year.'-01')) ?>"
+            >前年</a>
           <?php endif; ?>
 
          <!--次年存在するか -->
          <?php if($after_count >0): ?>
-            <a href="#">次年</a>
+          <a href="/calendar/plan/history?user_id=<?= $user->id ?>&year=<?= $next_year ?>&date=<?= date('Y-m',strtotime($next_year.'-01')) ?>"
+            >次年</a>
           <?php endif; ?>
         </div>
 
@@ -23,7 +25,7 @@
           <?php foreach($months as $month) : ?>
             <dd>
               <a 
-               href="/calendar/plan/history?user_id=<?= $user->id ?>&date=<?= date('Y-m',strtotime($target_year.'-'.$month)) ?>"
+               href="/calendar/plan/history?user_id=<?= $user->id ?>&year=<?= $target_year ?>&date=<?= date('Y-m',strtotime($target_year.'-'.$month)) ?>"
                ><?= $month.'月度履歴' ?></a>
             </dd>
           <?php endforeach; ?>
@@ -35,7 +37,7 @@
     <!-- 右エリア-->
     <div class="history-table">
         <div class="task-info">
-          <h4>【<?= Plan::getDateFormat($_GET['date']).'作業履歴' ?>】</h4>
+          <h4>【<?= Plan::getDateFormat(isset($_GET['date'])? $_GET['date'] : date('Y-m')).'作業履歴' ?>】</h4>
         </div>
         <?php if(count($tasks) >=1) : ?>
           <table>
@@ -53,7 +55,7 @@
                   <td><?= $task->month_and_day() ?></td>
                   <td><?= $task->setWeek() ?></td>
                   <td><?= $task->content ?></td>
-                  <td><?= $task->status ?></td>
+                  <td style="color:<?= $task->getStatausStyle() ?>"><?= $task->getStatausLabel() ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

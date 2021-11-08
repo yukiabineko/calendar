@@ -54,8 +54,12 @@ class planController extends Controller{
         $user = new user();
         $this->user = $user->find((int)$_GET['user_id']);
 
-         //該当年度セット
-        $this->target_year = $this->target_year( isset($_GET['year'])? $_GET['year'] : date('Y')); 
+
+         //該当年度セット(当年、前年、次年)
+        $this->target_year = isset($_GET['year'])? $_GET['year'] : date('Y'); 
+        $this->prev_year = (int)$this->target_year - 1;
+        $this->next_year = (int)$this->target_year + 1;
+        
         $this->toptitle = "履歴";
 
         //前年数
@@ -66,7 +70,7 @@ class planController extends Controller{
        
 
         //左エリアの月リスト
-        $this->months = $this->each_year_month(isset($_GET['year'])? $_GET['date'] : null);
+        $this->months = $this->each_year_month(isset($_GET['year'])? $_GET['year'] : null);
 
         //右エリアにて各月のタスクリスト
          $task =new task();

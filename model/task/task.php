@@ -13,7 +13,7 @@ class task extends taskModel{
     public function dateFormat(){
         return date('Y/m/d',strtotime(($this->working_time)));
       }
-    //時間のフォーマットz
+    //時間のフォーマット
     public function timeFormat(){
       return date('H時i分',strtotime(($this->working_time)));
     }

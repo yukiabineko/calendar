@@ -19,7 +19,7 @@
                 <td><?= $task->month_and_day() ?></td>
                 <td><?= $task->setWeek() ?></td>
                 <td><?= $task->content ?></td>
-                <td><?= $task->status ?></td>
+                <td style="color:<?= $task->getStatausStyle() ?>"><?= $task->getStatausLabel() ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

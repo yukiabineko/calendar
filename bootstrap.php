@@ -88,6 +88,7 @@ if(isset($_SESSION['current_user'])){
 else if(!isset($_SESSION['current_user'])           
         && $_SERVER['REQUEST_URI'] != '/calendar/top/index' 
         && $_SERVER['REQUEST_URI'] != '/calendar/session/new'
+        && $_SERVER['REQUEST_URI'] != '/calendar/session/create'
         && $_SERVER['REQUEST_URI'] != '/calendar/user/create'
         && $_SERVER['REQUEST_URI'] != '/calendar/user/new'){
             

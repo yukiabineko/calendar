@@ -9,6 +9,7 @@ class sessionController extends Controller{
         $token = $this->createToken();
         $_SESSION['csrf_token'] = $token;
         $this->csrf = $token;
+       
     }
     public function create(){
         $auth = new session();

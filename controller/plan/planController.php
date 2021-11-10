@@ -75,6 +75,8 @@ class planController extends Controller{
         //右エリアにて各月のタスクリスト
          $task =new task();
          $this->tasks = $task->one_month_task(isset($_GET['date'])? $_GET['date'] : date('Y-m'));
+         $this->pagination = $this->pagination_set($this->tasks);
+         print_r($this->tasks);
         
     }
 
@@ -97,5 +99,6 @@ class planController extends Controller{
         //各月のタスクリスト
          $task =new task();
          $this->tasks = $task->one_month_task(isset($_GET['date'])? $_GET['date'] : date('Y-m'));
+         
     }
 }

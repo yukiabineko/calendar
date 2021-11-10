@@ -8,13 +8,15 @@
         <div class="year-buttons"> 
         <!--前年存在するか -->
           <?php if($before_count >0): ?>
-            <a href="/calendar/plan/history?user_id=<?= $user->id ?>&year=<?= $prev_year ?>&date=<?= date('Y-m',strtotime($prev_year.'-01')) ?>"
-            >前年</a>
+            <a href="/calendar/plan/history?user_id=
+              <?= $user->id ?>&year=<?= $prev_year ?>&date=<?= date('Y-m',strtotime($prev_year.'-01')) ?>"
+              >前年</a>
           <?php endif; ?>
 
          <!--次年存在するか -->
          <?php if($after_count >0): ?>
-          <a href="/calendar/plan/history?user_id=<?= $user->id ?>&year=<?= $next_year ?>&date=<?= date('Y-m',strtotime($next_year.'-01')) ?>"
+          <a href="/calendar/plan/history?user_id=
+            <?= $user->id ?>&year=<?= $next_year ?>&date=<?= date('Y-m',strtotime($next_year.'-01')) ?>"
             >次年</a>
           <?php endif; ?>
         </div>
@@ -38,6 +40,8 @@
     <div class="history-table">
         <div class="task-info">
           <h4>【<?= Plan::getDateFormat(isset($_GET['date'])? $_GET['date'] : date('Y-m')).'作業履歴' ?>】</h4>
+          <!--ページネーション -->
+          <?= $pagination ?>
         </div>
         <?php if(count($tasks) >=1) : ?>
           <table>

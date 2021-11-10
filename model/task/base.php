@@ -2,6 +2,7 @@
 
 class baseTask{
   protected $pdo;
+  protected $records = array();
 
   public function __construct()
   {
@@ -75,8 +76,8 @@ class baseTask{
        $smt = $this->pdo->prepare('SELECT * FROM task WHERE id= ?');
        $smt->bindValue(1, $id, PDO::PARAM_INT);
        $smt->execute();
-       $result = $smt->fetch(PDO::FETCH_ASSOC);
-       return $result;
+       $this->records = $smt->fetch(PDO::FETCH_ASSOC);
+       return $this->records;
 
      }
      catch(Exception $e){
@@ -168,7 +169,7 @@ class baseTask{
       return false;
     }
   }
-  //ユーザー、日付、タスク連結レコード
+  //ユーザー、日付、タスク連結レコード(全てのレコード)
    public function target_tasks(int $user_id, string $send_date){
        $date =date('Y-m',strtotime($send_date));
        $first_day = date('Y-m-d',strtotime('first day of'.$date));
@@ -185,6 +186,7 @@ class baseTask{
        $smt->bindValue(3, $last_day, PDO::PARAM_STR);
        $smt->execute();
        $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+       $results = array_slice($results,1,4);
        return $results;
      }
      catch(Exception $e){
@@ -192,6 +194,12 @@ class baseTask{
        die();
      }
    }
+   /**
+    * 上の関数のうちページネーションで分割するレコード
+    */
+  public function pagination_record(int $page){
+
+  }
   
   //バリデーション
   public function validation(){

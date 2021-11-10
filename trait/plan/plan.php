@@ -102,5 +102,17 @@ trait planHelper
     $user_agent = $_SERVER['HTTP_USER_AGENT']; // HTTP ヘッダからユーザー エージェントの文字列を取り出す
     return preg_match('/iphone|ipod|ipad|android/ui', $user_agent) != 0; // 既知の判定用文字列を検索
   }
+   /**
+    * 月ごとの履歴の総数を計算その後5件ごとにするため1/5分けしてページネーションの数確定
+    */
+    public function pagination_set(array  $tasks): string{
+        $count = ceil( count($tasks) /5 );
+        $html = '<div class="pagination">';
+        foreach(range(1, $count) as $i){
+            $html.= '<div class="pagination-item">'.$i.'</div>';
+        }
+        $html.= '</div>';
+       return $html;
+     }
    
 }

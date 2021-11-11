@@ -8,6 +8,7 @@ class taskModel{
     public $working_time;
     public $plan_id;
     public $status;
+    public $tasks = array();
 
     public function all(int $user_id): array{
         $base = new baseTask();
@@ -82,9 +83,22 @@ class taskModel{
            $new_task->plan_id = $record['plan_id'];
            array_push($tasks, $new_task);
          }
-
        }
+       $this->tasks = $tasks;
        return $tasks;
+    }
+    /**
+     * ページネーションによる分割タスク
+     */
+    public function pagination_task(int $page = null){
+      //5の数が振り分け数(ここを変更すれば振り分け数ができる。)
+      if(isset( $this->tasks ) ){
+        $page = $page ?? 1;
+        $start = $page !=1 ?(($page - 1) * 5 ) : 0;
+        $num = $start !=0 ?($page - 1) * 5 + 5 : 5;
+         
+        return array_slice($this->tasks, $start, 5);
+      }
     }
   
     

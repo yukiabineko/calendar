@@ -109,10 +109,22 @@ trait planHelper
         $count = ceil( count($tasks) /5 );
         $html = '<div class="pagination">';
         foreach(range(1, $count) as $i){
-            $html.= '<div class="pagination-item">'.$i.'</div>';
+            $html.= '<div class="pagination-item"'.testCol($i).'>'.$i.'</div>';
         }
         $html.= '</div>';
        return $html;
      }
+     
    
+}
+/**
+ * ページネーション選択ページcss変動
+ */
+ function testCol(int $num): string{
+   if(isset($_GET['page'])){
+       return (int)$_GET['page'] == $num ? 'style=background:blue;color:white' : '';
+   }
+   else{
+       return $num ==1 ? 'style=background:blue;color:white' : '';
+   }
 }

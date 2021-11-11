@@ -185,21 +185,15 @@ class baseTask{
        $smt->bindValue(2, $first_day, PDO::PARAM_STR);
        $smt->bindValue(3, $last_day, PDO::PARAM_STR);
        $smt->execute();
-       $results = $smt->fetchAll(PDO::FETCH_ASSOC);
-       $results = array_slice($results,1,4);
-       return $results;
+       $this->results = $smt->fetchAll(PDO::FETCH_ASSOC);
+       return $this->results;
      }
      catch(Exception $e){
        $e->getMessage();
        die();
      }
    }
-   /**
-    * 上の関数のうちページネーションで分割するレコード
-    */
-  public function pagination_record(int $page){
-
-  }
+  
   
   //バリデーション
   public function validation(){

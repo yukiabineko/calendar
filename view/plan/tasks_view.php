@@ -2,6 +2,8 @@
   <div class="history-table">
     <div class="task-info">
         <h4>【<?= Plan::getDateFormat($_GET['date']).'作業履歴' ?>】</h4>
+        <!--ページネーション -->
+        <?= $pagination ?>
     </div>
     <?php if(count($tasks) >=1) : ?>
         <table>

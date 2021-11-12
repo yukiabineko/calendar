@@ -2,6 +2,8 @@
 
 namespace plan\calender;
 
+use task;
+
 trait planHelper
 {
     public function getWeek(){
@@ -106,16 +108,35 @@ trait planHelper
     * 月ごとの履歴の総数を計算その後5件ごとにするため1/5分けしてページネーションの数確定
     */
     public function pagination_set(array  $tasks): string{
-        $count = ceil( count($tasks) /5 );
-        $html = '<div class="pagination">';
-        foreach(range(1, $count) as $i){
-            $html.= '<div class="pagination-item"'.testCol($i).'>'.$i.'</div>';
+        $url = "/calendar/plan/history?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )."&date=".$_GET['date'];
+        if( !empty($tasks) ){
+            //全レコードを5で割り全ページネーションページ数を算出
+            $count = ceil( count($tasks) /5 );  
+
+            //ページネーションページ数が5以上ならば5で切り替えるようにするため算出
+            $div_count = $count >=6 ?ceil( $count / 5) : 1;
+
+            //ページネーション表示最初のページ
+            $first = 1;
+            //ページネーション表示最後のページ($conutをオーバーしてしまった場合は上限$count)
+            $last = ( $first + 4 ) <= $count ?($first + 4) : $count;
+
+
+            echo $count;
+            $html = '<div class="pagination">';
+            $div_count >=2 ?$html.='<div class="pagination-item">< 前</div>&nbsp;' : '';
+
+            foreach(range($first, $last) as $i){
+                $html.= '<div class="pagination-item"'.testCol($i).'>';
+                $html.= '<a href="'.$url.'&page='.$i.'" '.testCol($i).'>'.$i.'</a>';
+                $html.='</div>';
+            }
+            $html.= '</div>';
+            return $html;
         }
-        $html.= '</div>';
-       return $html;
+        else { return '';}
      }
      
-   
 }
 /**
  * ページネーション選択ページcss変動

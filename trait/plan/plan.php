@@ -108,7 +108,9 @@ trait planHelper
     * 月ごとの履歴の総数を計算その後5件ごとにするため1/5分けしてページネーションの数確定
     */
     public function pagination_set(array  $tasks): string{
-        $url = "/calendar/plan/history?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )."&date=".$_GET['date'];
+        $url = "/calendar/plan/history?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )
+        ."&date=".$_GET['date'].(isset($_GET['first'])?'&first='.$_GET['first'] : '');
+
         if( !empty($tasks) ){
             //全レコードを5で割り全ページネーションページ数を算出
             $count = ceil( count($tasks) /5 );  
@@ -117,20 +119,26 @@ trait planHelper
             $div_count = $count >=6 ?ceil( $count / 5) : 1;
 
             //ページネーション表示最初のページ
-            $first = 1;
+            $first = isset($_GET['first']) ?(int)$_GET['first'] : 1;
             //ページネーション表示最後のページ($conutをオーバーしてしまった場合は上限$count)
             $last = ( $first + 4 ) <= $count ?($first + 4) : $count;
 
 
-            echo $count;
+            //echo $count;
             $html = '<div class="pagination">';
-            $div_count >=2 ?$html.='<div class="pagination-item">< 前</div>&nbsp;' : '';
-
+            $html .= $first != 1 ?'<div class="pagination-item">
+              <a href="'.$url.'&page='.($first - 1).'&first='.($first - 1).'">< 前</a>
+              </div>' : '';
+            
             foreach(range($first, $last) as $i){
                 $html.= '<div class="pagination-item"'.testCol($i).'>';
                 $html.= '<a href="'.$url.'&page='.$i.'" '.testCol($i).'>'.$i.'</a>';
                 $html.='</div>';
             }
+            (($div_count >=2) && $last < $count) ?$html.='<div class="pagination-item">
+              <a href="'.$url.'&page='.($first +1).'&first='.($first + 1).'">< 次</a>
+            </div>&nbsp;' : '';
+
             $html.= '</div>';
             return $html;
         }

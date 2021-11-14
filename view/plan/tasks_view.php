@@ -3,7 +3,7 @@
     <div class="task-info">
         <h4>【<?= Plan::getDateFormat($_GET['date']).'作業履歴' ?>】</h4>
         <!--ページネーション -->
-        <?= $pagination ?>
+        <div style="margin-left: -10px;"><?= $pagination ?></div>
     </div>
     <?php if(count($tasks) >=1) : ?>
         <table>

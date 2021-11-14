@@ -101,6 +101,7 @@ class planController extends Controller{
          $task =new task();
          $this->tasks = $task->one_month_task(isset($_GET['date'])? $_GET['date'] : date('Y-m'));
          $this->pagination = $this->pagination_set($this->tasks);
+         $this->tasks = $task->pagination_task(isset( $_GET['page'])? $_GET['page'] : null );
          
     }
 }

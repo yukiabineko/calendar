@@ -108,8 +108,15 @@ trait planHelper
     * 月ごとの履歴の総数を計算その後5件ごとにするため1/5分けしてページネーションの数確定
     */
     public function pagination_set(array  $tasks): string{
-        $url = "/calendar/plan/history?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )
+        if( !$this->is_mobile()){
+            $url = "/calendar/plan/history?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )
         ."&date=".$_GET['date'].(isset($_GET['first'])?'&first='.$_GET['first'] : '');
+        }
+        else{
+           $url = "/calendar/plan/tasks?user_id=".$_GET['user_id']."&year=".( isset($_GET['year'])? $_GET['year'] : date('Y') )
+           ."&date=".$_GET['date'].(isset($_GET['first'])?'&first='.$_GET['first'] : '');
+        }
+       
 
         if( !empty($tasks) ){
             //全レコードを5で割り全ページネーションページ数を算出

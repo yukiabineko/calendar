@@ -21,7 +21,14 @@
             <div class="close">
                 <button id="closebutton" onclick="closeDrower()">✖️</button>
             </div>
-            <div style="margin-top:20%;text-align:center;font-weight:bold">【メニュー】</div>
+            <div class="drower-header">【メニュー】</div>
+            <dl class="drower-dl">
+              <dt>スケジュール状況</dt>
+              <dd>今週の作業:【<span style="color:red;"><?= count($weeks_data) ?></span>】件</dd>
+              <dd>今月の作業:【<span style="color:red;"><?= count($months_data) ?></span>】件</dd>
+              <dd>今週の未完了の作業:【<span style="color:red;"><?= count($weekly_incompletes) ?></span>】件</dd>
+              <dd>今週の未完了の作業: 【<span style="color:red;"><?= count($monthly_incomletes) ?></span>】件</dd>
+            </dl>
         </div>
       </div>
     <?php endif; ?>

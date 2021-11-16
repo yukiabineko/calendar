@@ -169,7 +169,7 @@ class baseTask{
       return false;
     }
   }
-  //ユーザー、日付、タスク連結レコード(全てのレコード)
+  //一ヶ月ユーザー、日付、タスク連結レコード(全てのレコード)
    public function target_tasks(int $user_id, string $send_date){
        $date =date('Y-m',strtotime($send_date));
        $first_day = date('Y-m-d',strtotime('first day of'.$date));
@@ -193,7 +193,28 @@ class baseTask{
        die();
      }
    }
-  
+
+  //任意の期間の上関数のレコード
+  public function range_task_acquisition(int $user_id, string $first, string $last){
+    
+    try{
+      $smt = $this->pdo->prepare('
+        SELECT task.id,task.content,task.working_time,task.status,task.plan_id 
+        FROM users INNER JOIN plan ON users.id = plan.user_id 
+        INNER JOIN task ON plan.id=task.plan_id WHERE users.id=? AND plan.dy BETWEEN ? AND ?
+      ');
+      $smt->bindValue(1, $user_id, PDO::PARAM_INT);
+      $smt->bindValue(2, $first, PDO::PARAM_STR);
+      $smt->bindValue(3, $last, PDO::PARAM_STR);
+      $smt->execute();
+      $this->results = $smt->fetchAll(PDO::FETCH_ASSOC);
+      return $this->results;
+    }
+    catch(Exception $e){
+      $e->getMessage();
+      die();
+    }
+  }
   
   //バリデーション
   public function validation(){

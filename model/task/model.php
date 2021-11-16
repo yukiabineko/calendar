@@ -87,6 +87,30 @@ class taskModel{
        $this->tasks = $tasks;
        return $tasks;
     }
+
+    /**
+     * 任意の範囲のタスク取得
+     */
+    public function get_range_task(string $first, string $last): array{
+      $tasks = array();
+      if(isset($_SESSION['current_user'])){
+        $base = new baseTask();
+        $records = $base->range_task_acquisition((int)$_SESSION['current_user']['id'], $first, $last);
+        
+        foreach($records as $record){
+          $new_task = new task();
+          $new_task->id = $record['id'];
+          $new_task->content = $record['content'];
+          $new_task->working_time = $record['working_time'];
+          $new_task->status = $record['status'];
+          $new_task->plan_id = $record['plan_id'];
+          array_push($tasks, $new_task);
+        }
+      }
+      $this->tasks = $tasks;
+      return $tasks;
+    }
+
     /**
      * ページネーションによる分割タスク
      */

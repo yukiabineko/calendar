@@ -20,7 +20,9 @@ trait top_module{
     }
     //当日レコード取得
     public function today_data(){
-        
+        $task = new Task();
+        return $task->get_range_task( date('Y-m-d'), date('Y-m-d') );
+
     }
     //週間のレコードの取得
     public function one_week_data(): array{
@@ -34,6 +36,14 @@ trait top_module{
          $task = new Task();
          return $task->one_month_task( $this->weeks_first_day());
 
+    }
+    //当日のうち未完了を抽出
+    public function today_incomplete(){
+        $weekTasks = $this->today_data();
+        $weekExtractions = array_filter($weekTasks, function($data){
+            return $data->status == 1;
+        });
+        return $weekExtractions;
     }
     //一週間のうち未完了を抽出
     public function weekly_incomplete(){

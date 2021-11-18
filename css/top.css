@@ -5,6 +5,7 @@
     margin: 0;
     position: relative;
     height: 100%;
+    z-index: 1;
 }
 .main-visual img{
     display: block;
@@ -18,6 +19,7 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   z-index: 1;
 }
 .visual-content h3{
     color: white;
@@ -46,6 +48,51 @@
 .visual-content a:hover{
     background-color: rgb(146, 149, 199);;
     transform: scale(120%);
+}
+#top-modal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 9;
+    
+}
+ #top-modal .top-modal-content{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    overflow: scroll;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 10px;
+    z-index: 99;
+}
+.top-modal-close-button{
+    text-align: right;
+    margin: 0;
+}
+.top-modal-close-button button{
+    background-color: rgb(129, 162, 235);
+    border: 4px double rgb(120, 120, 136);
+    color: #fff;
+}
+.top-modal-close-button button:hover{
+    background-color: cyan;
+}
+.top-modal-heder{
+    border-bottom: 0.5px solid rgb(129, 162, 235);
+    margin-top: -2%;
+}
+.top-modal-content #top-modal-title{
+    text-align: center;
+    padding: -1 0;
+    font-weight: 500;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .main-visual .hamburger{
     position: absolute;
@@ -152,6 +199,13 @@
     margin: 0;
     padding: 0;
 }
+.drower-dl dd button{
+    background: none;
+    border: none;
+}
+.drower-dl dd button:hover{
+   background-color: #f0f0f0;
+}
 /********************************************************************************************************************************/
 /**
 @phone
@@ -216,6 +270,18 @@
         color: rgb(38, 39, 41);
         margin: 0;
         padding: 0;
+    }
+    #top-modal .top-modal-content{
+        position: absolute;
+        width: 80%;
+        height: 70%;
+        overflow: scroll;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 10px;
+        z-index: 99;
     }
 }
    

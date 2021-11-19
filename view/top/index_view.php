@@ -44,7 +44,7 @@
             <dl class="drower-dl">
               <dt>スケジュール状況</dt>
               <dd>
-                <button onclick="openTopModal()">
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 1, false)">
                   本日の作業:【<span style="color:red;"><?= count($today_data) ?></span>】件
                 </button>
               </dd>

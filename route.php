@@ -2,6 +2,7 @@
 
 $routes = [
     ['url'=>'/calendar/top/index', 'class'=>'top', 'action'=>'index'],
+    ['url'=>'/calendar/top/show', 'class'=>'top', 'action'=>'show'],
     ['url'=>'/calendar/plan/index', 'class'=>'plan', 'action'=>'index'],
     ['url'=>'/calendar/plan/show', 'class'=>'plan', 'action'=>'show'],
     ['url'=>'/calendar/plan/history', 'class'=>'plan', 'action'=>'history'],

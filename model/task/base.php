@@ -195,7 +195,7 @@ class baseTask{
    }
 
   //任意の期間の上関数のレコード
-  public function range_task_acquisition(int $user_id, string $first, string $last){
+  public function range_task_acquisition(int $user_id, string $first, string $last=null){
     
     try{
       $smt = $this->pdo->prepare('

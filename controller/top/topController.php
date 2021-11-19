@@ -19,4 +19,7 @@ class topController extends Controller{
         $this->monthly_incomletes = $this->monthly_incomplete();
         
     }
+    public function show(){
+        
+    }
 }

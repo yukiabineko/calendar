@@ -20,6 +20,8 @@ class topController extends Controller{
         
     }
     public function show(){
-        
+      if(isset($_SESSION['current_user'])){
+          echo 'ok';
+      }  
     }
 }

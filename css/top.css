@@ -94,6 +94,20 @@
     font-weight: 500;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.top-modal .content-body{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+.top-modal-table{
+    width: 100%;
+}
+.top-modal-table thead{
+    background-color: rgb(129, 162, 235);
+    color: white;
+    font-size: 12px;
+    line-height: 34px;
+}
 .main-visual .hamburger{
     position: absolute;
     left: 5px;

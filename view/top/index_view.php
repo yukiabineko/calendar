@@ -25,6 +25,18 @@
         </div>
 
         <div class="content-body">
+           <!-- レコードある場合の表示 -->
+           <table class="top-modal-table" id="top-modal-table">
+            <thead>
+              <tr>
+                <th>曜日</th>
+                <th>作業予定時間</th>
+                <th>作業内容</th>
+              </tr>
+            </thead>
+          </table>
+
+           <!-- レコードのない場合の表示 -->
          
         </div>
       </div>
@@ -49,11 +61,32 @@
                 </button>
               </dd>
 
-              <dd><button>今週の作業:【<span style="color:red;"><?= count($weeks_data) ?></span>】件</button></dd>
-              <dd><button>今月の作業:【<span style="color:red;"><?= count($months_data) ?></span>】件</button></dd>
-              <dd style="background:coral;color:mediumblue"><button>本日の未完了の作業:【<span style="color:navajowhite;"><?= count($today_incompletes) ?></span>】件</button></dd>
-              <dd style="background:coral;color:mediumblue"><button>今週の未完了の作業:【<span style="color:navajowhite;"><?= count($weekly_incompletes) ?></span>】件</button></dd>
-              <dd style="background:coral;color:mediumblue"><button>今月の未完了の作業: 【<span style="color:navajowhite;"><?= count($monthly_incomletes) ?></span>】件</button></dd>
+              <dd>
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 2, false)">
+                  今週の作業:【<span style="color:red;"><?= count($weeks_data) ?></span>】件
+                </button>
+              </dd>
+
+              <dd>
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 3, false)">
+                  今月の作業:【<span style="color:red;"><?= count($months_data) ?></span>】件
+                </button>
+              </dd>
+              <dd style="background:coral;color:mediumblue">
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 1, true)">
+                  本日の未完了の作業:【<span style="color:navajowhite;"><?= count($today_incompletes) ?></span>】件
+                </button>
+              </dd>
+              <dd style="background:coral;color:mediumblue">
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 2, true)">今週の未完了の作業:【<span style="color:navajowhite;">
+                  <?= count($weekly_incompletes) ?></span>】件
+                </button>
+              </dd>
+              <dd style="background:coral;color:mediumblue">
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 3, true)">
+                   今月の未完了の作業: 【<span style="color:navajowhite;"><?= count($monthly_incomletes) ?></span>】件
+                </button>
+              </dd>
             </dl>
         </div>
       </div>

@@ -16,10 +16,11 @@ function closeDrower(){
  * モーダルを開く
  */
 function openTopModal(user_id, type, incomplete){
-
-  let today = new Date();
-  let todayDate = `${today.getFullYear()}-${ today.getMonth() + 1}-${ today.getDate() }`;
-  let sendtype = null;
+  
+  const status = [
+    "【本日の作業一覧】", "【今週の作業一覧】", "【今月の作業一覧】", "【本日の未完了作業一覧】", "【今週の未完了作業一覧】", "【今月の未完了作業一覧】"
+  ];
+  let keys = null;
 
   let xhr = new XMLHttpRequest();
   
@@ -42,24 +43,41 @@ function openTopModal(user_id, type, incomplete){
     sendtype = 5;
   }
   else if(type == 3 && incomplete){
-    type = 6;
+    sendtype = 6;
   }
-  alert(sendtype);
-
-  xhr.open('GET', `/calendar/top/show?type=${type}`,true);
   
-  let checkbox = document.getElementById('hm-menu');
-  checkbox.checked = false;
+  xhr.open('GET', `/calendar/top/show?type=${sendtype}`,true);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4 && xhr.status == 200){
+      let json = JSON.parse( xhr.responseText );
+      keys = Object.keys(json);
+      console.log(keys); //要素数
+      
+      let checkbox = document.getElementById('hm-menu');
+      checkbox.checked = false;
 
-  let menus = document.getElementById('c_lb');
-  menus.style.display = 'none';
+      let menus = document.getElementById('c_lb');
+      menus.style.display = 'none';
 
-  let menuTitle = document.getElementById('menu-title');
-  menuTitle.style.display = 'none';
+      let menuTitle = document.getElementById('menu-title');
+      menuTitle.style.display = 'none';
 
-  let modal = document.getElementById('top-modal');
-  modal.style.display ='block';
- 
+      let modal = document.getElementById('top-modal');
+      modal.style.display ='block';
+      //モーダル内の要素
+      document.getElementById('top-modal-title').textContent = status[sendtype -1];
+      //要素数によりテーブルかdivか？
+      if(keys.length >0){
+        console.log(json);
+      }
+      else{
+        console.log('no');
+      }
+
+
+    }
+  }
+  xhr.send();
 }
 /**
  * モーダルを閉じる
@@ -74,22 +92,17 @@ function closeTopModal(){
   let modal = document.getElementById('top-modal');
   modal.style.display ='none';
 }
-/**
- * 今週の初日、末日
- */
-function getWeek(){
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let todayDay = today.getDay();
-  let todayDate = today.getDate();
-  let weekfirstDate = todayDate - todayDay;
-  let weeklastDate = weekfirstDate + 6;
-  let first = `${year}-${month}-${weekfirstDate}`;
-  let last =  `${year}-${month}-${weeklastDate}`;
 
-  return [first, last];
+/**
+ * テーブルの作成
+ */
+function createTable(Objs){
+  let html = '';
+  
+  
 }
+
+
 /**
  * 今月の初日、末日
  */

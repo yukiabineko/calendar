@@ -26,7 +26,7 @@ function openTopModal(user_id, type, incomplete){
   
   //{typeは　当日全て1, 週全て2, 月全て3, 当日未完了4, 週未完了5, 月未完了6}
 
-  //当日全ての作業
+  //作業
   if(type == 1 && !incomplete){
     sendtype = 1;
   }
@@ -68,7 +68,7 @@ function openTopModal(user_id, type, incomplete){
       document.getElementById('top-modal-title').textContent = status[sendtype -1];
       //要素数によりテーブルかdivか？
       if(keys.length >0){
-        console.log(json);
+        createTable(json, sendtype);
       }
       else{
         console.log('no');
@@ -96,27 +96,78 @@ function closeTopModal(){
 /**
  * テーブルの作成
  */
-function createTable(Objs){
-  let html = '';
+function createTable(Objs, type){
   
+  //日付けthが存在する場合削除してリセット
+  let th =document.getElementById('create-th');
+  th? document.getElementById('top-modal-thead').removeChild(th) : '';
+
+  if( type != 1){
+    let theadTr = document.getElementById('top-modal-thead');
+    let th = document.createElement('th');
+    th.id = 'create-th';
+    th.textContent = '日付';
+    theadTr.prepend(th);
+  }
+  
+  let tbody = document.getElementById('top-table-tbody');
+  tbody.innerHTML = '';
+  Objs.forEach(data => {
+    let tr = document.createElement('tr');
+    if( type != 1){
+      let day_td = document.createElement('td');
+      day_td.textContent = getDateFormat(data['working_time']);
+      tr.appendChild(day_td);
+    }
+    let time_td = document.createElement('td');
+    let week_td = document.createElement('td');
+    let content_td = document.createElement('td');
+
+    
+    time_td.textContent =  getWeek( data['working_time'] );
+    week_td.textContent = parseDateTime( data['working_time'] );
+    content_td.textContent = data['content'];
+    
+    tr.appendChild(time_td);
+    tr.appendChild(week_td);
+    tr.appendChild(content_td);
+    tbody.appendChild(tr);
+
+  });
   
 }
-
+/**
+ * 
+ */
+function getDateFormat(params){
+  let date = new Date(params);
+  let month = toDoubleDigits(date.getMonth() + 1 );
+  let day = toDoubleDigits(date.getDate());
+  return `${month}/${day}`;
+}
 
 /**
- * 今月の初日、末日
+ * 時間の設定
  */
-function getThisMonth(){
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let first_date = new Date(year, today.getMonth(), 1);
-  let last_date = new Date(year,month, 0);
-
-  let first = `${first_date.getFullYear()}-${first_date.getMonth() + 1 }-${ toDoubleDigits(first_date.getDate())}`;
-  let last = `${last_date.getFullYear()}-${last_date.getMonth() + 1 }-${ toDoubleDigits(last_date.getDate())}`;
-  return [ first, last];
+function parseDateTime(params){
+  let date = new Date(params);
+  let hour = toDoubleDigits( date.getHours() );
+  let min = toDoubleDigits( date.getMinutes() );
+  return `${hour}時${min}分`;
 }
+/**
+ * 
+ * 曜日の設定
+ * 
+ */
+function getWeek(params){
+  const weeks = ['日', '月', '火', '水', '木', '金', '土'];
+  let date = new Date(params);
+  let num = date.getDay();
+  return weeks[parseInt(num)];
+}
+
+
 /**
  * 日付けの０埋め
  */

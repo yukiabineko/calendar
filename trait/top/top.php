@@ -40,25 +40,28 @@ trait top_module{
     //当日のうち未完了を抽出
     public function today_incomplete(){
         $weekTasks = $this->today_data();
-        $weekExtractions = array_filter($weekTasks, function($data){
-            return $data->status == 1;
-        });
-        return $weekExtractions;
+        $new_array = array();
+        foreach($weekTasks as $week){
+          $week->status == 1? array_push($new_array, $week) : '';
+        }
+        return $new_array;
     }
     //一週間のうち未完了を抽出
     public function weekly_incomplete(){
         $weekTasks = $this->one_week_data();
-        $weekExtractions = array_filter($weekTasks, function($data){
-            return $data->status == 1;
-        });
-        return $weekExtractions;
+        $new_array = array();
+        foreach($weekTasks as $week){
+          $week->status == 1? array_push($new_array, $week) : '';
+        }
+        return $new_array;
     }
     //一ヶ月のうち未完了抽出
     public function monthly_incomplete(){
       $monthTasks = $this->one_month_data();
-      $monthExtraction = array_filter($monthTasks, function($data){
-         return $data->status == 1;
-      });
-      return $monthExtraction;
+      $new_array = array();
+        foreach($monthTasks as $week){
+          $week->status == 1? array_push($new_array, $week) : '';
+        }
+        return $new_array;
     }
 }

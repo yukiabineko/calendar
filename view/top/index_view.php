@@ -28,12 +28,13 @@
            <!-- レコードある場合の表示 -->
            <table class="top-modal-table" id="top-modal-table">
             <thead>
-              <tr>
+              <tr id="top-modal-thead">
                 <th>曜日</th>
                 <th>作業予定時間</th>
                 <th>作業内容</th>
               </tr>
             </thead>
+            <tbody id="top-table-tbody"></tbody>
           </table>
 
            <!-- レコードのない場合の表示 -->

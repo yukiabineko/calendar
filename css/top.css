@@ -101,12 +101,29 @@
 }
 .top-modal-table{
     width: 100%;
+    border-collapse: collapse;
 }
 .top-modal-table thead{
     background-color: rgb(129, 162, 235);
     color: white;
     font-size: 12px;
     line-height: 34px;
+    border: 1px solid #c0c0c0;
+}
+.top-modal-table tbody{
+    font-size: 12px;
+    line-height: 34px;
+    border: 1px solid #c0c0c0;
+}
+.top-modal-table thead tr th{
+    color: white;
+    border: 1px solid #c0c0c0; 
+}
+.top-modal-table tbody tr td{
+    font-size: 12px;
+    line-height: 34px;
+    border: 1px solid #c0c0c0;
+    text-align: center;
 }
 .main-visual .hamburger{
     position: absolute;

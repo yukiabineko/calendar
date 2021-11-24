@@ -102,7 +102,7 @@ function createTable(Objs, type){
   let th =document.getElementById('create-th');
   th? document.getElementById('top-modal-thead').removeChild(th) : '';
 
-  if( type != 1){
+  if( type == 2 || type == 3 || type == 5 || type == 6){
     let theadTr = document.getElementById('top-modal-thead');
     let th = document.createElement('th');
     th.id = 'create-th';
@@ -114,7 +114,7 @@ function createTable(Objs, type){
   tbody.innerHTML = '';
   Objs.forEach(data => {
     let tr = document.createElement('tr');
-    if( type != 1){
+    if( type == 2 || type == 3 || type == 5 || type == 6){
       let day_td = document.createElement('td');
       day_td.textContent = getDateFormat(data['working_time']);
       tr.appendChild(day_td);
@@ -140,7 +140,7 @@ function createTable(Objs, type){
  * 
  */
 function getDateFormat(params){
-  let date = new Date(params);
+  let date = new Date(params.replace(/-/g,"/"));
   let month = toDoubleDigits(date.getMonth() + 1 );
   let day = toDoubleDigits(date.getDate());
   return `${month}/${day}`;
@@ -150,7 +150,7 @@ function getDateFormat(params){
  * 時間の設定
  */
 function parseDateTime(params){
-  let date = new Date(params);
+  let date = new Date(params.replace(/-/g,"/"));
   let hour = toDoubleDigits( date.getHours() );
   let min = toDoubleDigits( date.getMinutes() );
   return `${hour}時${min}分`;
@@ -162,7 +162,7 @@ function parseDateTime(params){
  */
 function getWeek(params){
   const weeks = ['日', '月', '火', '水', '木', '金', '土'];
-  let date = new Date(params);
+  let date = new Date(params.replace(/-/g,"/"));
   let num = date.getDay();
   return weeks[parseInt(num)];
 }

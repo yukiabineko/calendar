@@ -1,10 +1,9 @@
 <footer>
     <small>
         <ul>
-            <li><a href="/top/index">HOME</a></li>
-            <li><a href="/plan/index">スケジュール</a></li>
-            <li><a href="#">履歴</a></li>
-            <li>プライバシーポリシー</li>
+            <li><a href="/calendar/top/index">HOME</a></li>
+            <li><a href="/calendar/plan/index">スケジュール</a></li>
+            <li><a href="/calendar/plan/history">履歴</a></li>
         </ul>
         
     </small>

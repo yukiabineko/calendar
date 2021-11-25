@@ -100,22 +100,19 @@
     margin-top: 15px;
     overflow: scroll;
     border-top: 1px solid #f0f0f0;
-    background-color: #f0f0f0;
 }
 .top-modal-table{
     width: 100%;
-    border-collapse: collapse;
+    border-collapse:collapse
+
 }
 .top-modal-table thead{
     background-color: rgb(129, 162, 235);
-    position: sticky;
-    top: 0;
     color: white;
-    font-size: 12px;
-    line-height: 34px;
-    border: 1px solid #c0c0c0;
+    
+  
 }
-.top-modal-table thead::before{
+.top-modal-table thead tr td::before{
     content: "";
     position: absolute;
     top: -1px;
@@ -128,15 +125,22 @@
     font-size: 12px;
     line-height: 34px;
     border: 1px solid #c0c0c0;
+    
 }
 .top-modal-table thead tr th{
+    background-color: rgb(129, 162, 235);
+    white-space: nowrap;
     color: white;
-    border: 1px solid #c0c0c0; 
+    font-size: 12px;
+    line-height: 42px;
+    border: 1px solid #c0c0c0;
+    position: sticky;
+    top: 0;
+    z-index: 1; 
 }
 .top-modal-table tbody tr td{
     font-size: 12px;
     line-height: 34px;
-    border: 1px solid #c0c0c0;
     text-align: center;
 }
 .main-visual .hamburger{

@@ -51,7 +51,7 @@ function openTopModal(user_id, type, incomplete){
     if(xhr.readyState == 4 && xhr.status == 200){
       let json = JSON.parse( xhr.responseText );
       keys = Object.keys(json);
-      console.log(keys); //要素数
+      //console.log(keys); //要素数
       
       let checkbox = document.getElementById('hm-menu');
       checkbox.checked = false;
@@ -101,6 +101,8 @@ function createTable(Objs, type){
   //日付けthが存在する場合削除してリセット
   let th =document.getElementById('create-th');
   th? document.getElementById('top-modal-thead').removeChild(th) : '';
+  let colorflag = false;
+
 
   if( type == 2 || type == 3 || type == 5 || type == 6){
     let theadTr = document.getElementById('top-modal-thead');
@@ -112,8 +114,19 @@ function createTable(Objs, type){
   
   let tbody = document.getElementById('top-table-tbody');
   tbody.innerHTML = '';
-  Objs.forEach(data => {
+  Objs.forEach((data,i) => {
     let tr = document.createElement('tr');
+    //日付けの切り替わりで色変え
+    tr.style.background = colorflag? '#f0f0f0' : '#fff';
+    tr.id = `tr-${data['id']}`;
+    //色変えのフラグの変更処理
+    if(Objs[i + 1]){
+      //console.log(Objs[i + 1]);
+      getDateFormat( Objs[i]['working_time'] ) != getDateFormat( Objs[i+1]['working_time'] )? colorflag =!colorflag : '';
+    }
+    
+    
+
     if( type == 2 || type == 3 || type == 5 || type == 6){
       let day_td = document.createElement('td');
       day_td.textContent = getDateFormat(data['working_time']);

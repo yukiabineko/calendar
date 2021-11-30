@@ -100,6 +100,18 @@
     overflow: scroll;
     border-top: 1px solid #f0f0f0;
 }
+/*レコードない場合のモーダル表示 */
+#top-modal-no-record{
+    display: none;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #c0c0c0;
+    color: #fff;
+    font-size: 16px;
+    line-height: 60px;
+    text-align: center;
+    margin-top: 30px;
+}
 .top-modal-table{
     width: 100%;
     border-collapse:collapse

@@ -50,8 +50,7 @@ function openTopModal(user_id, type, incomplete){
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4 && xhr.status == 200){
       let json = JSON.parse( xhr.responseText );
-      keys = Object.keys(json);
-      //console.log(keys); //要素数
+     
       
       let checkbox = document.getElementById('hm-menu');
       checkbox.checked = false;
@@ -67,11 +66,11 @@ function openTopModal(user_id, type, incomplete){
       //モーダル内の要素
       document.getElementById('top-modal-title').textContent = status[sendtype -1];
       //要素数によりテーブルかdivか？
-      if(keys.length >0){
+      if(json.length > 0){
         createTable(json, sendtype);
       }
       else{
-        console.log('no');
+        NoRecordCase();
       }
 
 
@@ -97,6 +96,8 @@ function closeTopModal(){
  * テーブルの作成
  */
 function createTable(Objs, type){
+  document.getElementById('top-modal-table').style.display = 'table';
+  document.getElementById('top-modal-no-record').style.display = 'none';
   
   //日付けthが存在する場合削除してリセット
   let th =document.getElementById('create-th');
@@ -150,7 +151,14 @@ function createTable(Objs, type){
   
 }
 /**
- * 
+ * レコードがない場合のモーダル表示
+ */
+function NoRecordCase(){
+  document.getElementById('top-modal-no-record').style.display = 'block';
+  document.getElementById('top-modal-table').style.display = 'none';
+}
+/**
+ * ハイフンと/切り替え
  */
 function getDateFormat(params){
   let date = new Date(params.replace(/-/g,"/"));

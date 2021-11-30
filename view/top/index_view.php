@@ -38,6 +38,9 @@
           </table>
 
            <!-- レコードのない場合の表示 -->
+           <div id="top-modal-no-record">
+             該当データがありません。
+           </div>
          
         </div>
       </div>
@@ -79,8 +82,7 @@
                 </button>
               </dd>
               <dd style="background:coral;color:mediumblue">
-                <button onclick="openTopModal(<?= $current_user['id'] ?>, 2, true)">今週の未完了の作業:【<span style="color:navajowhite;">
-                  <?= count($weekly_incompletes) ?></span>】件
+                <button onclick="openTopModal(<?= $current_user['id'] ?>, 2, true)">今週の未完了の作業:【<span style="color:navajowhite;"><?= count($weekly_incompletes) ?></span>】件
                 </button>
               </dd>
               <dd style="background:coral;color:mediumblue">

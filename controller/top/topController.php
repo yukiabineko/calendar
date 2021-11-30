@@ -23,7 +23,7 @@ class topController extends Controller{
      * ajaxによるレコードを取得
      */
     public function show(){
-      if(isset($_SESSION['current_user'])){
+      if(isset($_SESSION['current_user']) && isset($_GET['type'])){
           switch ($_GET['type']) {
             case 1:
               //当日レコード

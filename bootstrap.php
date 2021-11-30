@@ -13,6 +13,7 @@ $current_user = null;
 class AutoLoader{
     public $class = null;
     public $action = null;
+    
 
     public function register(){
        spl_autoload_register(array($this, 'loadClass'));
@@ -47,7 +48,7 @@ class AutoLoader{
             break;
           }
           else{
-              
+             
           }
        }
     }
@@ -83,9 +84,9 @@ else{
 if(isset($_SESSION['current_user'])){
     $current_user = $_SESSION['current_user'];
 }
- /*未ログイン時ログイン、新規会員、トップ以外アクセス禁止----(コメントA) */
+ /*routeに存在して、未ログイン時ログイン、新規会員、トップ以外アクセス禁止----(コメントA) */
 
-else if(!isset($_SESSION['current_user'])           
+else if( !isset($_SESSION['current_user']) && isset($load->class) && isset($load->action)  
         && $_SERVER['REQUEST_URI'] != '/calendar/top/index' 
         && $_SERVER['REQUEST_URI'] != '/calendar/session/new'
         && $_SERVER['REQUEST_URI'] != '/calendar/session/create'
@@ -95,37 +96,38 @@ else if(!isset($_SESSION['current_user'])
     header('location: /calendar/top/index');
 }
 /* ---(コメントA)範囲end */
-        
+//routeに存在している場合controller等のセット        
+if(isset($load->class) && isset($load->action)){
+  $controller = $load->class.'Controller';
+  $action = $load ->action;
 
-$controller = $load->class.'Controller';
-$action = $load ->action;
+  if(isset($_SESSION['current_user'])){
+    $call = new $controller($_SESSION['current_user']['id']);
+  }
+  else{
+    $call = new $controller();
+  }
 
-if(isset($_SESSION['current_user'])){
-  $call = new $controller($_SESSION['current_user']['id']);
+  $call -> $action();
+  $yield = './view/'.$load->class.'/'.$load ->action.'_view.php';
+  if(is_file($yield) == false){
+      $yield = null;
+  }
+  $css_file = '/calendar/css/'.$load->class.'.css';
+  $js_file = '/calendar/js/'.$load->class.'.js';
+
+  foreach($call as $key => $value){
+      ${$key} = $value;
+  }
+  if(is_readable($yield)){
+    require './view/layout.php';
+
+  }
 }
 else{
-  $call = new $controller();
+  include('./view/404_view.php');
 }
 
-$call -> $action();
-
-
-
-
-$yield = './view/'.$load->class.'/'.$load ->action.'_view.php';
-if(is_file($yield) == false){
-    $yield = null;
-}
-$css_file = '/calendar/css/'.$load->class.'.css';
-$js_file = '/calendar/js/'.$load->class.'.js';
-
-foreach($call as $key => $value){
-    ${$key} = $value;
-}
-if(is_readable($yield)){
-  require './view/layout.php';
-
-}
 
 
 //Word

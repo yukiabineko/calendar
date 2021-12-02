@@ -1,5 +1,8 @@
 <div class="main-visual" id="main-visual">
-    <img src="../image/main.jpg" alt="メインビジュアル">
+    <img src="../image/main.jpg" alt="メインビジュアル" class="main-visual-img" id="img1">
+    <img src="../image/coffice.jpg" alt="メインビジュアル" class="main-visual-img" id="img2">
+    <img src="../image/memo.jpg" alt="メインビジュアル" class="main-visual-img" id="img3">
+
     <div class="visual-content">
         <h3>スケジュール管理アプリ</h3>
         <h2>スケジュール</h2>

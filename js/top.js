@@ -1,3 +1,11 @@
+let imageNo = 1;
+
+window.addEventListener('load', function(){
+   setInterval(() => {
+      changeImage();
+   }, 3000);
+});
+
 window.addEventListener('scroll',function(){
   let closebutton = this.document.getElementById('closebutton');
 
@@ -198,4 +206,37 @@ function toDoubleDigits(num){
     num = "0" + num;
   }
  return num;    
+}
+/**
+ * トップページの画像の切り替え
+ */
+function changeImage(){
+  let firstImage = document.getElementById('img1');
+  let secondImage = document.getElementById('img2');
+  let lastImage = document.getElementById('img3');
+
+  switch (imageNo) {
+    case 1:
+      firstImage.style.display = 'block';
+      secondImage.style.display = 'none';
+      lastImage.style.display = 'none';
+      break;
+    case 2:
+      firstImage.style.display = 'none';
+      secondImage.style.display = 'block';
+      lastImage.style.display = 'none';
+      break;
+    case 3:
+      firstImage.style.display = 'none';
+      secondImage.style.display = 'none';
+      lastImage.style.display = 'block';
+      break;
+  
+    default:
+      break;
+  }
+
+
+  imageNo < 3 ? imageNo ++ : imageNo = 1;
+  
 }
